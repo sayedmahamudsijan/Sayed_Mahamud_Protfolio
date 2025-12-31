@@ -1,63 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Sayed Mahmud — Electronic & Telecommunication Engineer | Metamaterial Research | QA" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="description" content="Sayed Mahmud — Electronic & Telecommunication Engineer | Metamaterial Research | QA"/>
   <title>Sayed Mahmud — Portfolio</title>
 
   <style>
-    /* =========================================================
-      THEME TOKENS (Dark default + Light mode via [data-theme])
-    ========================================================== */
+    /* =========================
+      Premium + Higher Contrast Theme System
+    ========================== */
     :root{
-      --bg: #070a1a;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.08);
-      --border: rgba(255,255,255,.12);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.66);
+      --max: 1180px;
+      --pad: clamp(16px, 3vw, 28px);
+      --section: clamp(56px, 7vw, 96px);
 
-      --accent1: #8b5cf6;
-      --accent2: #10b981;
+      --h1: clamp(2.2rem, 4.5vw, 3.6rem);
+      --h2: clamp(1.7rem, 3vw, 2.5rem);
+      --h3: clamp(1.15rem, 1.8vw, 1.4rem);
+      --p:  clamp(1rem, 1.25vw, 1.06rem);
 
-      --shadow: 0 22px 70px rgba(0,0,0,.35);
-      --shadow2: 0 12px 40px rgba(0,0,0,.25);
-
-      --radius-lg: 22px;
+      --radius-xl: 26px;
+      --radius-lg: 20px;
       --radius-md: 14px;
       --radius-sm: 12px;
 
-      --max: 1150px;
-      --pad: clamp(16px, 3vw, 28px);
-      --section: clamp(54px, 7vw, 92px);
-
-      --h1: clamp(2.1rem, 4.2vw, 3.4rem);
-      --h2: clamp(1.6rem, 2.8vw, 2.4rem);
-      --h3: clamp(1.1rem, 1.8vw, 1.35rem);
-      --p:  clamp(0.98rem, 1.2vw, 1.05rem);
+      --speed: .22s;
+      --shadow: 0 18px 70px rgba(0,0,0,.45);
+      --shadow-soft: 0 10px 34px rgba(0,0,0,.28);
     }
 
-    html[data-theme="light"]{
-      --bg: #f6f7fb;
-      --panel: rgba(10,15,35,.05);
-      --panel2: rgba(10,15,35,.06);
-      --border: rgba(10,15,35,.12);
-      --text: rgba(10,15,35,.92);
-      --muted: rgba(10,15,35,.64);
+    /* Dark Theme (default) */
+    :root[data-theme="dark"]{
+      --bg: #050816;
+      --bg2:#070a1f;
+      --panel: rgba(255,255,255,.07);
+      --panel2: rgba(255,255,255,.10);
+      --border: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
 
-      --shadow: 0 18px 55px rgba(10,15,35,.10);
-      --shadow2: 0 10px 30px rgba(10,15,35,.08);
+      /* stronger, less pale accents */
+      --a1: #a855f7; /* violet */
+      --a2: #22c55e; /* green */
+      --a3: #38bdf8; /* sky */
+      --glow: 0 0 0 4px rgba(168,85,247,.20), 0 0 40px rgba(168,85,247,.22);
+      --glow2: 0 0 40px rgba(34,197,94,.18);
+    }
+
+    /* Light Theme */
+    :root[data-theme="light"]{
+      --bg: #f7f8ff;
+      --bg2:#ffffff;
+      --panel: rgba(17,24,39,.06);
+      --panel2: rgba(17,24,39,.08);
+      --border: rgba(17,24,39,.12);
+      --text: rgba(17,24,39,.92);
+      --muted: rgba(17,24,39,.70);
+
+      --a1: #6d28d9; /* violet */
+      --a2: #0f766e; /* teal-green */
+      --a3: #2563eb; /* blue */
+      --glow: 0 0 0 4px rgba(109,40,217,.14), 0 0 30px rgba(37,99,235,.10);
+      --glow2: 0 0 28px rgba(15,118,110,.12);
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
       background:
-        radial-gradient(1000px 600px at 15% 10%, rgba(139,92,246,.18), transparent 55%),
-        radial-gradient(900px 520px at 85% 25%, rgba(16,185,129,.14), transparent 60%),
+        radial-gradient(950px 620px at 10% 10%, rgba(168,85,247,.18), transparent 55%),
+        radial-gradient(900px 520px at 88% 18%, rgba(34,197,94,.14), transparent 60%),
+        radial-gradient(820px 480px at 55% 92%, rgba(56,189,248,.10), transparent 55%),
         var(--bg);
       color: var(--text);
       line-height: 1.65;
@@ -73,91 +89,101 @@
       z-index: 2;
     }
 
-    /* Background grid */
+    /* subtle animated noise / grid */
     .bg-grid{
       position: fixed;
       inset:0;
-      z-index:0;
       pointer-events:none;
       opacity:.18;
+      z-index:0;
       background:
-        radial-gradient(circle at 10% 10%, rgba(139,92,246,.22), transparent 40%),
-        radial-gradient(circle at 90% 20%, rgba(16,185,129,.18), transparent 45%),
-        linear-gradient(to right, rgba(127,127,127,.18) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(127,127,127,.18) 1px, transparent 1px);
-      background-size: auto, auto, 48px 48px, 48px 48px;
-      filter: blur(.2px);
-    }
-    html[data-theme="light"] .bg-grid{
-      opacity:.12;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(139,92,246,.14), transparent 40%),
-        radial-gradient(circle at 90% 20%, rgba(16,185,129,.12), transparent 45%),
-        linear-gradient(to right, rgba(10,15,35,.08) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(10,15,35,.08) 1px, transparent 1px);
-      background-size: auto, auto, 48px 48px, 48px 48px;
+        linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(closest-side at 50% 50%, rgba(0,0,0,.9), transparent 70%);
     }
 
-    /* Navbar */
-    .nav{
+    /* =========================
+      Navbar
+    ========================== */
+    header.nav{
       position: sticky;
       top:0;
-      z-index: 50;
-      backdrop-filter: blur(12px);
-      background: color-mix(in srgb, var(--bg) 60%, transparent);
+      z-index:50;
+      backdrop-filter: blur(14px);
+      background: color-mix(in srgb, var(--bg) 70%, transparent);
       border-bottom: 1px solid var(--border);
     }
     .nav-inner{
       display:flex;
-      align-items:center;
       justify-content:space-between;
-      padding: 14px var(--pad);
+      align-items:center;
       max-width: var(--max);
       margin:0 auto;
+      padding: 14px var(--pad);
       gap: 12px;
     }
     .brand{
       display:flex;
-      gap:12px;
       align-items:center;
+      gap:12px;
       text-decoration:none;
-      min-width: 220px;
+      min-width: 240px;
     }
     .logo{
-      width:38px; height:38px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      width:40px; height:40px;
+      border-radius: 14px;
       display:grid;
       place-items:center;
-      font-weight:900;
-      letter-spacing:.5px;
-      box-shadow: 0 10px 35px rgba(139,92,246,.20);
-      color: white;
+      font-weight: 900;
+      letter-spacing: .5px;
+      background: linear-gradient(135deg, var(--a1), var(--a2));
+      box-shadow: var(--glow);
     }
-    .brand strong{font-size: 1.05rem; line-height: 1.1; display:block;}
-    .brand span{font-size:.88rem; color: var(--muted); display:block; margin-top:2px;}
+    .brand strong{
+      display:block;
+      font-size: 1.05rem;
+      letter-spacing: -.01em;
+      line-height:1.15;
+    }
+    .brand span{
+      display:block;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: .86rem;
+      margin-top:2px;
+    }
 
     .nav-links{
       display:flex;
-      gap: 10px;
-      align-items:center;
       list-style:none;
+      gap: 10px;
       margin:0; padding:0;
-      flex-wrap: wrap;
-      justify-content:center;
+      align-items:center;
     }
     .nav-links a{
       text-decoration:none;
       color: var(--muted);
-      font-weight: 800;
-      font-size:.95rem;
-      padding: 10px 10px;
+      font-weight: 850;
+      font-size: .93rem;
+      padding: 10px 12px;
       border-radius: 12px;
-      transition: .2s ease;
+      transition: var(--speed);
     }
-    .nav-links a:hover{ color: var(--text); background: var(--panel); }
+    .nav-links a:hover{
+      color: var(--text);
+      background: var(--panel);
+      transform: translateY(-1px);
+    }
 
-    .nav-actions{display:flex; gap:10px; align-items:center; justify-content:flex-end;}
+    .nav-actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+
     .btn{
       border:1px solid transparent;
       background: transparent;
@@ -170,23 +196,27 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      transition: .2s ease;
+      transition: var(--speed);
       cursor:pointer;
       white-space:nowrap;
     }
     .btn-primary{
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      color: white;
-      box-shadow: 0 18px 40px rgba(139,92,246,.18);
+      background: linear-gradient(135deg, var(--a1), var(--a2));
+      box-shadow: var(--glow);
     }
     .btn-primary:hover{ transform: translateY(-2px); }
+
     .btn-ghost{
       border-color: var(--border);
       background: var(--panel);
     }
-    .btn-ghost:hover{ background: var(--panel2); transform: translateY(-1px); }
+    .btn-ghost:hover{
+      background: var(--panel2);
+      transform: translateY(-1px);
+    }
+
     .btn:focus-visible{
-      outline: 3px solid color-mix(in srgb, var(--accent1) 45%, transparent);
+      outline: 3px solid color-mix(in srgb, var(--a1) 45%, transparent);
       outline-offset: 2px;
     }
 
@@ -194,7 +224,7 @@
       display:none;
       width:44px; height:44px;
       border-radius: 12px;
-      border: 1px solid var(--border);
+      border:1px solid var(--border);
       background: var(--panel);
       cursor:pointer;
     }
@@ -205,11 +235,10 @@
       margin: 6px auto;
       border-radius: 2px;
     }
-
     .mobile-panel{
       display:none;
       border-top: 1px solid var(--border);
-      background: color-mix(in srgb, var(--bg) 70%, transparent);
+      background: color-mix(in srgb, var(--bg) 75%, transparent);
       backdrop-filter: blur(12px);
     }
     .mobile-links{
@@ -217,12 +246,12 @@
       padding: 10px var(--pad) 16px;
       margin:0;
       display:grid;
-      gap:8px;
+      gap: 8px;
     }
     .mobile-links a{
       display:flex;
       padding: 12px 12px;
-      border-radius: 12px;
+      border-radius: 14px;
       text-decoration:none;
       color: var(--muted);
       background: var(--panel);
@@ -231,8 +260,34 @@
     }
     .mobile-links a:hover{ color: var(--text); background: var(--panel2); }
 
-    /* Hero */
+    /* Theme toggle */
+    .toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border:1px solid var(--border);
+      background: var(--panel);
+      font-weight: 900;
+      cursor:pointer;
+      transition: var(--speed);
+      user-select:none;
+    }
+    .toggle:hover{ background: var(--panel2); transform: translateY(-1px); }
+    .toggle .dot{
+      width:12px; height:12px;
+      border-radius:999px;
+      background: linear-gradient(135deg, var(--a1), var(--a2));
+      box-shadow: var(--glow2);
+    }
+
+    /* =========================
+      Hero
+    ========================== */
+    main{ position:relative; z-index:1; }
     section{ padding: var(--section) 0; }
+
     .hero{
       padding: calc(var(--section) - 10px) 0 var(--section);
       display:grid;
@@ -240,33 +295,41 @@
       gap: clamp(18px, 4vw, 48px);
       align-items:center;
     }
+
     .kicker{
       color: var(--muted);
       font-weight: 900;
-      letter-spacing: .08em;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      font-size: .82rem;
-      margin-bottom: 10px;
+      font-size: .80rem;
+      margin-bottom: 12px;
     }
     h1{
-      margin:0 0 12px;
+      margin:0 0 14px;
       font-size: var(--h1);
       line-height: 1.05;
-      letter-spacing:-.02em;
+      letter-spacing:-.03em;
     }
-    .headline-accent{
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      -webkit-background-clip:text;
-      background-clip:text;
+    .grad{
+      background: linear-gradient(135deg, var(--a1), var(--a2), var(--a3));
+      -webkit-background-clip: text;
+      background-clip: text;
       color: transparent;
     }
+
     .tagline{
       margin:0 0 18px;
       color: var(--muted);
       font-size: var(--p);
-      max-width: 62ch;
+      max-width: 64ch;
     }
-    .chips{display:flex; flex-wrap:wrap; gap:10px; margin: 18px 0 22px;}
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 18px 0 22px;
+    }
     .chip{
       display:inline-flex;
       align-items:center;
@@ -275,31 +338,58 @@
       border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--panel);
-      color: color-mix(in srgb, var(--text) 82%, transparent);
-      font-weight: 900;
+      color: color-mix(in srgb, var(--text) 85%, transparent);
+      font-weight: 850;
       font-size: .92rem;
       text-decoration:none;
-      transition: .2s ease;
+      transition: var(--speed);
     }
-    .chip:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent1) 45%, var(--border)); }
-    .hero-cta{display:flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;}
-    .avatar-wrap{display:grid; place-items:center;}
+    .chip:hover{
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--a1) 40%, var(--border));
+      background: var(--panel2);
+    }
+
+    .hero-cta{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
     .avatar{
-      width: min(340px, 78vw);
+      width: min(360px, 82vw);
       aspect-ratio: 1/1;
-      border-radius: 28px;
+      border-radius: var(--radius-xl);
       overflow:hidden;
-      background: linear-gradient(135deg, rgba(139,92,246,.18), rgba(16,185,129,.12));
       border: 1px solid var(--border);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--a1) 18%, transparent), color-mix(in srgb, var(--a2) 14%, transparent));
       box-shadow: var(--shadow);
       position: relative;
     }
-    .avatar img{width:100%; height:100%; object-fit: cover;}
+    .avatar::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius: calc(var(--radius-xl) + 2px);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--a1) 40%, transparent), color-mix(in srgb, var(--a2) 32%, transparent));
+      opacity:.16;
+      filter: blur(22px);
+      z-index:0;
+    }
+    .avatar img{
+      width:100%; height:100%;
+      object-fit:cover;
+      position:relative;
+      z-index:1;
+    }
 
-    /* Titles */
+    /* =========================
+      Typography + section headings
+    ========================== */
     .section-title{
       text-align:center;
-      margin:0 0 12px;
+      margin:0 0 14px;
       font-size: var(--h2);
       letter-spacing: -.02em;
     }
@@ -310,8 +400,19 @@
       max-width: 72ch;
       font-size: var(--p);
     }
+    .section-kicker{
+      text-align:center;
+      color: var(--muted);
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .78rem;
+      margin-bottom: 10px;
+    }
 
-    /* Grids & cards */
+    /* =========================
+      Layout + Cards
+    ========================== */
     .grid{ display:grid; gap: 18px; }
     .grid-2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid-3{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -321,16 +422,40 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 18px;
-      box-shadow: var(--shadow2);
-      transition: .22s ease;
+      box-shadow: var(--shadow-soft);
+      transition: var(--speed);
     }
-    .card:hover{ transform: translateY(-5px); border-color: color-mix(in srgb, var(--accent1) 35%, var(--border)); }
-
-    .card h3{ margin: 6px 0 6px; font-size: var(--h3); }
+    .card:hover{
+      transform: translateY(-5px);
+      background: var(--panel2);
+      border-color: color-mix(in srgb, var(--a1) 34%, var(--border));
+    }
+    .card h3{
+      margin: 8px 0 6px;
+      font-size: var(--h3);
+      letter-spacing: -.01em;
+    }
     .muted{ color: var(--muted); }
-    .divider{ height:1px; background: var(--border); margin: 16px 0; }
+    .divider{
+      height: 1px;
+      background: color-mix(in srgb, var(--border) 70%, transparent);
+      margin: 16px 0;
+    }
 
-    /* Pills */
+    /* Spotlight */
+    .spot-icon{
+      width:50px; height:50px;
+      border-radius: 16px;
+      display:grid; place-items:center;
+      background: color-mix(in srgb, var(--panel2) 70%, transparent);
+      border: 1px solid var(--border);
+      font-size: 1.35rem;
+      box-shadow: var(--glow2);
+    }
+
+    /* =========================
+      Pills / Filters
+    ========================== */
     .pills{
       display:flex;
       flex-wrap:wrap;
@@ -346,136 +471,230 @@
       color: color-mix(in srgb, var(--text) 78%, transparent);
       font-weight: 950;
       cursor:pointer;
-      transition: .2s ease;
+      transition: var(--speed);
       user-select:none;
     }
+    .pill:hover{ transform: translateY(-1px); background: var(--panel2); }
     .pill.active{
-      background: linear-gradient(135deg, rgba(139,92,246,.85), rgba(16,185,129,.75));
-      color: white;
+      background: linear-gradient(135deg, var(--a1), var(--a2));
       border-color: transparent;
+      color: white;
+      box-shadow: var(--glow);
     }
 
-    /* Publications cards */
-    .pub-card{
-      padding: 20px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: var(--panel);
-      transition: .22s ease;
+    /* =========================
+      Projects
+    ========================== */
+    .project-card{
       position: relative;
       overflow:hidden;
     }
-    .pub-card:hover{
-      transform: translateY(-5px);
-      border-color: color-mix(in srgb, var(--accent1) 35%, var(--border));
+    .project-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 12px;
+    }
+    .project-title{
+      margin:0;
+      font-size: 1.15rem;
+      letter-spacing: -.01em;
+      font-weight: 950;
+    }
+    .project-badges{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
     .badge{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: .85rem;
-      font-weight: 950;
-      border: 1px solid var(--border);
-      background: var(--panel2);
-      margin-bottom: 10px;
-    }
-    .pub-title{ margin:0 0 10px; font-size: 1.18rem; line-height: 1.55; }
-    .pub-venue{ color: var(--muted); margin: 0 0 10px; }
-    .highlights{ margin: 10px 0 0; padding: 0 0 0 18px; color: var(--muted); }
-    .highlights li{ margin: 6px 0; }
-
-    .link-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px; }
-    .mini-link{
-      display:inline-flex;
-      text-decoration:none;
-      font-weight: 950;
-      color: color-mix(in srgb, var(--text) 90%, transparent);
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--panel2);
-      transition:.2s ease;
-      align-items:center;
-      gap:10px;
-    }
-    .mini-link:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent1) 40%, var(--border)); }
-
-    /* Projects */
-    .project-card{
-      padding: 0;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      min-height: 100%;
-    }
-    .project-media{
-      aspect-ratio: 16/9;
-      background: linear-gradient(135deg, rgba(139,92,246,.18), rgba(16,185,129,.12));
-      border-bottom: 1px solid var(--border);
-      overflow:hidden;
-    }
-    .project-media img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      transition: transform .35s ease;
-    }
-    .project-card:hover .project-media img{ transform: scale(1.04); }
-    .project-body{ padding: 16px 18px 18px; }
-    .project-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 12px; }
-    .tag{
       padding: 8px 10px;
       border-radius: 999px;
       border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--panel2) 70%, transparent);
+      font-weight: 950;
+      font-size: .82rem;
+      white-space:nowrap;
+    }
+    .project-links{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    .mini-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      text-decoration:none;
+      font-weight: 950;
+      transition: var(--speed);
+    }
+    .mini-btn:hover{
+      transform: translateY(-2px);
       background: var(--panel2);
-      font-weight: 900;
-      font-size: .86rem;
-      color: color-mix(in srgb, var(--text) 78%, transparent);
+      border-color: color-mix(in srgb, var(--a2) 30%, var(--border));
+      box-shadow: var(--glow2);
     }
 
-    /* Timeline */
-    .timeline{ position: relative; padding-left: 24px; display:grid; gap: 16px; }
+    /* =========================
+      Publications
+    ========================== */
+    .pub-card{
+      padding: 20px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--panel);
+      transition: var(--speed);
+    }
+    .pub-card:hover{
+      transform: translateY(-4px);
+      background: var(--panel2);
+      border-color: color-mix(in srgb, var(--a1) 34%, var(--border));
+    }
+    .pub-type{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-weight: 950;
+      font-size: .82rem;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--panel2) 70%, transparent);
+      margin-bottom: 10px;
+    }
+    .pub-title{ margin: 0 0 10px; font-size: 1.18rem; line-height: 1.55; font-weight: 950; }
+    .pub-venue{ margin: 0 0 10px; color: var(--muted); font-weight: 800; }
+    .list{
+      margin: 10px 0 0;
+      padding: 0 0 0 18px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .list li{ margin: 6px 0; }
+    .doi{
+      display:inline-flex;
+      margin-top: 14px;
+      text-decoration:none;
+      font-weight: 950;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      transition: var(--speed);
+    }
+    .doi:hover{
+      transform: translateY(-2px);
+      background: var(--panel2);
+      border-color: color-mix(in srgb, var(--a1) 38%, var(--border));
+      box-shadow: var(--glow);
+    }
+
+    /* “Publication page” panel */
+    .page{
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--bg2) 76%, transparent);
+      padding: clamp(18px, 3vw, 28px);
+      box-shadow: var(--shadow);
+    }
+    .page-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 14px;
+      flex-wrap:wrap;
+      margin-bottom: 14px;
+    }
+    .page-head h3{
+      margin:0;
+      font-size: 1.3rem;
+      letter-spacing: -.01em;
+    }
+
+    /* =========================
+      Timeline (Experience)
+    ========================== */
+    .timeline{
+      position: relative;
+      padding-left: 24px;
+      display:grid;
+      gap: 16px;
+    }
     .timeline::before{
       content:"";
       position:absolute;
-      left: 8px; top: 0; bottom: 0;
+      left: 9px;
+      top: 0;
+      bottom: 0;
       width: 2px;
-      background: linear-gradient(180deg, rgba(139,92,246,.9), rgba(16,185,129,.9));
+      background: linear-gradient(180deg, var(--a1), var(--a2));
       border-radius: 2px;
-      opacity:.75;
+      opacity:.85;
     }
     .t-item{ position: relative; padding-left: 14px; }
     .t-dot{
       position:absolute;
-      left: -2px; top: 18px;
-      width: 12px; height: 12px;
+      left: -2px;
+      top: 18px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      border: 2px solid color-mix(in srgb, var(--bg) 92%, transparent);
-      box-shadow: 0 10px 24px rgba(139,92,246,.20);
+      background: linear-gradient(135deg, var(--a1), var(--a2));
+      box-shadow: var(--glow2);
+      border: 2px solid color-mix(in srgb, var(--bg) 75%, transparent);
     }
-    .role-head{ display:flex; justify-content:space-between; gap: 14px; flex-wrap:wrap; align-items:flex-start; margin-bottom: 6px; }
-    .role-title{ margin:0; font-size: 1.18rem; font-weight: 950; }
-    .role-meta{ color: var(--muted); margin: 0; }
+    .role-head{
+      display:flex;
+      justify-content:space-between;
+      gap: 14px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      margin-bottom: 6px;
+    }
+    .role-title{ margin:0; font-size: 1.18rem; font-weight: 980; }
+    .role-meta{ margin: 0; color: var(--muted); font-weight: 800; }
     .role-period{
       font-weight: 950;
-      color: color-mix(in srgb, var(--text) 85%, transparent);
       border: 1px solid var(--border);
-      background: var(--panel2);
+      background: var(--panel);
       padding: 8px 10px;
       border-radius: 999px;
       font-size:.88rem;
       white-space:nowrap;
     }
-    .checklist{ margin: 10px 0 0; padding: 0 0 0 18px; color: var(--muted); }
-    .checklist li{ margin: 7px 0; }
 
-    /* Skills */
+    /* =========================
+      Skills Tags
+    ========================== */
     .tags{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 12px; }
+    .tag{
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      font-weight: 950;
+      color: color-mix(in srgb, var(--text) 82%, transparent);
+      font-size:.92rem;
+      transition: var(--speed);
+    }
+    .tag:hover{
+      transform: translateY(-2px);
+      background: var(--panel2);
+      border-color: color-mix(in srgb, var(--a3) 26%, var(--border));
+    }
 
-    /* Contact */
+    /* =========================
+      Contact (Formspree real)
+    ========================== */
     .contact{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
@@ -492,12 +711,28 @@
       color: var(--text);
       font: inherit;
       outline:none;
+      font-weight: 800;
     }
     textarea{ min-height: 150px; resize: vertical; }
     input:focus, textarea:focus{
-      border-color: color-mix(in srgb, var(--accent1) 55%, var(--border));
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent1) 22%, transparent);
+      border-color: color-mix(in srgb, var(--a1) 50%, var(--border));
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--a1) 18%, transparent);
+      background: var(--panel2);
     }
+    .form-note{ color: var(--muted); font-weight: 700; margin-top: 6px; }
+
+    .status{
+      display:none;
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      font-weight: 900;
+    }
+    .status.ok{ border-color: color-mix(in srgb, var(--a2) 40%, var(--border)); }
+    .status.err{ border-color: color-mix(in srgb, #ef4444 40%, var(--border)); }
+
     .contact-list{ display:grid; gap: 10px; }
     .contact-item{ display:flex; gap: 12px; align-items:flex-start; }
     .contact-item .ic{
@@ -505,12 +740,18 @@
       border-radius: 14px;
       display:grid; place-items:center;
       border: 1px solid var(--border);
-      background: var(--panel2);
+      background: var(--panel);
       font-size: 1.15rem;
       flex: 0 0 44px;
+      box-shadow: var(--glow2);
     }
-    .contact-item a{ color: color-mix(in srgb, var(--text) 88%, transparent); text-decoration:none; font-weight: 950; }
+    .contact-item a{
+      color: color-mix(in srgb, var(--text) 92%, transparent);
+      text-decoration:none;
+      font-weight: 950;
+    }
     .contact-item a:hover{ text-decoration: underline; }
+    .small-muted{ color: var(--muted); font-weight: 750; }
 
     footer{
       border-top: 1px solid var(--border);
@@ -519,79 +760,23 @@
       text-align:center;
     }
 
-    /* Modal ("Publication page") */
-    .modal{
-      position: fixed;
-      inset:0;
-      display:none;
-      place-items:center;
-      padding: 18px;
-      z-index: 2000;
-      background: rgba(0,0,0,.65);
-      backdrop-filter: blur(8px);
-    }
-    html[data-theme="light"] .modal{ background: rgba(10,15,35,.35); }
+    /* =========================
+      Reveal animation
+    ========================== */
+    .reveal{ opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible{ opacity: 1; transform: translateY(0); }
 
-    .modal.active{ display:grid; }
-    .modal-content{
-      width: min(980px, 100%);
-      max-height: 90vh;
-      overflow:auto;
-      background: color-mix(in srgb, var(--bg) 78%, transparent);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-    }
-    .modal-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: color-mix(in srgb, var(--bg) 88%, transparent);
-      backdrop-filter: blur(10px);
-      z-index: 2;
-    }
-    .modal-header h3{ margin:0; font-size: 1.1rem; }
-    .modal-body{ padding: 16px; }
-
-    .icon-btn{
-      width:44px; height:44px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      cursor:pointer;
-      display:grid;
-      place-items:center;
-      font-size: 1.2rem;
-      transition: .2s ease;
-      color: var(--text);
-    }
-    .icon-btn:hover{ transform: translateY(-1px); background: var(--panel2); }
-
-    /* Reveal animation */
-    .reveal{
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity .55s ease, transform .55s ease;
-    }
-    .reveal.visible{
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Responsive */
+    /* =========================
+      Responsive
+    ========================== */
     @media (max-width: 980px){
-      .hero{ grid-template-columns: 1fr; }
+      .hero{ grid-template-columns: 1fr; text-align:left; }
       .grid-3{ grid-template-columns: 1fr; }
       .grid-2{ grid-template-columns: 1fr; }
       .contact{ grid-template-columns: 1fr; }
       .nav-links{ display:none; }
       .hamburger{ display:inline-block; }
-      .brand{ min-width: unset; }
+      .brand{ min-width: auto; }
     }
   </style>
 </head>
@@ -606,14 +791,14 @@
         <div class="logo">SM</div>
         <div>
           <strong>Sayed Mahmud</strong>
-          <span>Electronic & Telecommunication Engineer</span>
+          <span>ETE • Research • QA</span>
         </div>
       </a>
 
       <ul class="nav-links" aria-label="Primary navigation">
         <li><a href="#about">About</a></li>
-        <li><a href="#research">Research</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#publications">Publications</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#certifications">Certifications</a></li>
         <li><a href="#skills">Skills</a></li>
@@ -621,11 +806,8 @@
       </ul>
 
       <div class="nav-actions">
-        <button class="btn btn-ghost" id="themeToggle" type="button" aria-label="Toggle dark/light">
-          🌙 Theme
-        </button>
-        <button class="btn btn-ghost" id="openPubs" type="button" aria-label="Open publications page">
-          📚 Publications
+        <button class="toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+          <span class="dot"></span><span id="themeLabel">Dark</span>
         </button>
         <a class="btn btn-primary" href="Sayed_Mahmud_CV.pdf" download>⬇️ Download CV</a>
         <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">
@@ -637,29 +819,28 @@
     <div class="mobile-panel" id="mobilePanel">
       <ul class="mobile-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#research">Research</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#publications">Publications</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#certifications">Certifications</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#" id="openPubsMobile">📚 Publications Page</a></li>
       </ul>
     </div>
   </header>
 
-  <!-- HERO -->
   <main id="home" class="container">
+    <!-- HERO -->
     <section class="hero">
       <div class="reveal">
         <div class="kicker">MSc Student at CUET • Metamaterial Research • QA Engineering</div>
         <h1>
-          Hi, I’m <span class="headline-accent">Sayed Mahmud</span><br />
-          I build RF solutions & publish metamaterial research.
+          Hi, I’m <span class="grad">Sayed Mahmud</span><br/>
+          I design RF systems & publish metamaterial research.
         </h1>
         <p class="tagline">
           Research-oriented Electronic & Telecommunication Engineer focused on metamaterial absorbers, EM simulation,
-          optimization, and ML-assisted analysis. Also experienced in software QA and testing workflows.
+          and performance optimization through analysis + ML assistance. Also experienced in structured software QA and testing workflows.
         </p>
 
         <div class="chips">
@@ -675,25 +856,49 @@
         </div>
 
         <div class="hero-cta">
-          <button class="btn btn-primary" type="button" id="openPubsHero">🔬 View Publications</button>
-          <a class="btn btn-ghost" href="#projects">🧩 View Projects</a>
-          <a class="btn btn-ghost" href="#contact">✉️ Contact Me</a>
+          <a class="btn btn-primary" href="#projects">🚀 View Projects</a>
+          <a class="btn btn-ghost" href="#publications">📚 Publications</a>
+          <a class="btn btn-ghost" href="#contact">✉️ Contact</a>
         </div>
       </div>
 
-      <div class="avatar-wrap reveal">
+      <div class="reveal">
         <div class="avatar" aria-label="Profile photo">
           <img src="profile.jpg" alt="Sayed Mahmud"
-               onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27600%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%2310182a%27/><text x=%2750%25%27 y=%2750%25%27 font-size=%2736%27 fill=%27%23ffffff%27 font-family=%27Arial%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27>Profile Photo</text></svg>';"/>
+               onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27600%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%2310182a%27/><text x=%2750%25%27 y=%2750%25%27 font-size=%2736%27 fill=%27%23ffffff%27 font-family=%27Arial%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27>Profile Photo</text></svg>';">
+        </div>
+      </div>
+    </section>
+
+    <!-- SPOTLIGHT -->
+    <section class="reveal">
+      <div class="grid grid-3">
+        <div class="card" onclick="location.href='#publications'" style="cursor:pointer;">
+          <div class="spot-icon">🔬</div>
+          <h3>Research</h3>
+          <p class="muted">Metamaterial absorbers for UWB & satellite applications with journal + IEEE publications.</p>
+        </div>
+
+        <div class="card" onclick="location.href='#projects'" style="cursor:pointer;">
+          <div class="spot-icon">🧠</div>
+          <h3>Projects</h3>
+          <p class="muted">Practical web apps: Vote Counter, Shohoz Bazzar, BlackJack, Collaborative Presentation.</p>
+        </div>
+
+        <div class="card" onclick="location.href='#experience'" style="cursor:pointer;">
+          <div class="spot-icon">✅</div>
+          <h3>QA Engineering</h3>
+          <p class="muted">Functional testing, defect tracking, and team collaboration from industry experience.</p>
         </div>
       </div>
     </section>
 
     <!-- ABOUT -->
     <section id="about" class="reveal">
+      <div class="section-kicker">Who I am</div>
       <h2 class="section-title">About</h2>
       <p class="section-subtitle">
-        I combine electromagnetic design skills with research writing and practical QA engineering experience.
+        I combine electromagnetic design skills with strong research writing and practical software QA experience.
       </p>
 
       <div class="grid grid-2">
@@ -705,7 +910,8 @@
           </p>
           <div class="divider"></div>
           <p class="muted">
-            My research has been published in journals such as Heliyon and AEU. Alongside research, I’ve worked in software quality assurance, supporting reliable delivery through disciplined testing and collaboration.
+            My research has been published in journals such as Heliyon and AEU. Alongside research, I’ve worked in software quality assurance,
+            supporting reliable delivery through disciplined testing and collaboration.
           </p>
         </div>
 
@@ -721,101 +927,161 @@
       </div>
     </section>
 
-    <!-- RESEARCH (teaser; full "page" in modal) -->
-    <section id="research" class="reveal">
-      <h2 class="section-title">Research (Highlights)</h2>
-      <p class="section-subtitle">Quick highlights below. Open the full Publications Page for BibTeX export + filtering.</p>
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+      <div class="section-kicker">What I built</div>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">
+        Selected projects from my GitHub with live demos. Clean UI, practical features, and deploy-ready builds.
+      </p>
 
-      <div class="grid" style="gap:14px;">
-        <article class="pub-card">
-          <div class="badge">🟣 Journal Article • 2025</div>
-          <h3 class="pub-title">Spiral Coil Shaped Multi-Resonance Metamaterial Absorber for Wireless Communication and Satellite Applications</h3>
-          <p class="pub-venue">AEU - International Journal of Electronics and Communications, Vol. 198, 2025</p>
-          <div class="link-row">
-            <a class="mini-link" href="https://doi.org/10.1016/j.aeue.2025.155844" target="_blank" rel="noreferrer">🔗 DOI</a>
-            <button class="mini-link" type="button" id="openPubsInline">📚 Open Publications Page</button>
+      <div class="grid grid-2">
+        <div class="card project-card">
+          <div class="project-top">
+            <div>
+              <p class="project-title">Vote Counter</p>
+              <p class="muted">A simple web-based vote counter app with clean UX for small voting scenarios.</p>
+            </div>
+            <div class="project-badges">
+              <span class="badge">🌐 Live</span>
+              <span class="badge">🧩 Web App</span>
+            </div>
           </div>
-        </article>
+          <div class="project-links">
+            <a class="mini-btn" href="https://votecounterbysayed.netlify.app/" target="_blank" rel="noreferrer">🚀 Live Demo</a>
+            <a class="mini-btn" href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">💻 GitHub</a>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="project-top">
+            <div>
+              <p class="project-title">Shohoz Bazzar</p>
+              <p class="muted">A storefront-style UI project with a clean layout and browsing experience.</p>
+            </div>
+            <div class="project-badges">
+              <span class="badge">🌐 Live</span>
+              <span class="badge">🛒 UI</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a class="mini-btn" href="https://sayedmahamudsijan.github.io/Shohoz_Bazzar/" target="_blank" rel="noreferrer">🚀 Live Demo</a>
+            <a class="mini-btn" href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">💻 GitHub</a>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="project-top">
+            <div>
+              <p class="project-title">BlackJack</p>
+              <p class="muted">A fun BlackJack game with interactive UI and gameplay logic.</p>
+            </div>
+            <div class="project-badges">
+              <span class="badge">🎮 Game</span>
+              <span class="badge">🌐 Live</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a class="mini-btn" href="https://blackjackbysayed.netlify.app/" target="_blank" rel="noreferrer">🚀 Live Demo</a>
+            <a class="mini-btn" href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">💻 GitHub</a>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="project-top">
+            <div>
+              <p class="project-title">Collaborative Presentation</p>
+              <p class="muted">A collaborative presentation tool for real-time sharing and teamwork presentations.</p>
+            </div>
+            <div class="project-badges">
+              <span class="badge">🤝 Collaboration</span>
+              <span class="badge">🌐 Live</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a class="mini-btn" href="https://collaborative-presentation-chi.vercel.app/" target="_blank" rel="noreferrer">🚀 Live Demo</a>
+            <a class="mini-btn" href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">💻 GitHub</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="reveal">
-      <h2 class="section-title">Projects</h2>
+    <!-- PUBLICATIONS "PAGE" -->
+    <section id="publications" class="reveal">
+      <div class="section-kicker">Research output</div>
+      <h2 class="section-title">Publications</h2>
       <p class="section-subtitle">
-        Add your best 4–8 projects here. Use real screenshots (CST plots, layouts, dashboards) to look more professional.
+        Explore my research papers and download BibTeX for citation in LaTeX / Overleaf.
       </p>
 
-      <div class="grid grid-3">
-        <!-- Project 1 (EXAMPLE) -->
-        <article class="card project-card">
-          <div class="project-media">
-            <img src="projects/metamaterial-absorber.jpg" alt="Metamaterial absorber project preview"
-                 onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27338%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23070a1a%27/><text x=%2750%25%27 y=%2750%25%27 font-size=%2724%27 fill=%27%23ffffff%27 font-family=%27Arial%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27>Project Image</text></svg>';"/>
-          </div>
-          <div class="project-body">
-            <h3>Metamaterial Absorber Design (CST)</h3>
-            <p class="muted">
-              Multi-resonance absorber workflow: unit-cell design, parametric sweep, polarization & angle stability analysis.
+      <div class="page">
+        <div class="page-head">
+          <div>
+            <h3>Publication Page</h3>
+            <p class="muted" style="margin:6px 0 0;">
+              Use filters, open DOI links, or download a BibTeX file for all entries.
             </p>
-            <div class="project-tags">
-              <span class="tag">CST</span><span class="tag">RF</span><span class="tag">Absorber</span>
-            </div>
-            <div class="link-row">
-              <a class="mini-link" href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">💻 GitHub</a>
-              <a class="mini-link" href="#" target="_blank" rel="noreferrer">🧾 Report</a>
-            </div>
           </div>
-        </article>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn btn-ghost" id="bibBtn" type="button">⬇️ Download BibTeX</button>
+            <a class="btn btn-primary" href="https://scholar.google.com/citations?user=ERA4-SrsAAAAJ" target="_blank" rel="noreferrer">🎓 Google Scholar</a>
+          </div>
+        </div>
 
-        <!-- Project 2 (EXAMPLE) -->
-        <article class="card project-card">
-          <div class="project-media">
-            <img src="projects/qa-testing.jpg" alt="QA project preview"
-                 onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27338%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23070a1a%27/><text x=%2750%25%27 y=%2750%25%27 font-size=%2724%27 fill=%27%23ffffff%27 font-family=%27Arial%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27>Project Image</text></svg>';"/>
-          </div>
-          <div class="project-body">
-            <h3>API Testing Suite (Postman)</h3>
-            <p class="muted">
-              Postman collections with environments + reusable test scripts for regression and sanity cycles.
-            </p>
-            <div class="project-tags">
-              <span class="tag">Postman</span><span class="tag">QA</span><span class="tag">API</span>
-            </div>
-            <div class="link-row">
-              <a class="mini-link" href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">💻 GitHub</a>
-              <a class="mini-link" href="#" target="_blank" rel="noreferrer">📄 Docs</a>
-            </div>
-          </div>
-        </article>
+        <div class="pills" id="pubPills">
+          <div class="pill active" data-filter="all">All</div>
+          <div class="pill" data-filter="journal">Journal</div>
+          <div class="pill" data-filter="conference">Conference</div>
+          <div class="pill" data-filter="2025">2025</div>
+          <div class="pill" data-filter="2024">2024</div>
+          <div class="pill" data-filter="2023">2023</div>
+        </div>
 
-        <!-- Project 3 (EXAMPLE) -->
-        <article class="card project-card">
-          <div class="project-media">
-            <img src="projects/ml-analysis.jpg" alt="ML-assisted analysis preview"
-                 onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27338%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23070a1a%27/><text x=%2750%25%27 y=%2750%25%27 font-size=%2724%27 fill=%27%23ffffff%27 font-family=%27Arial%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27>Project Image</text></svg>';"/>
-          </div>
-          <div class="project-body">
-            <h3>ML-Assisted Simulation Insights</h3>
-            <p class="muted">
-              Data pipeline for simulation results → feature extraction → model exploration for performance patterns.
-            </p>
-            <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">Analysis</span><span class="tag">ML</span>
-            </div>
-            <div class="link-row">
-              <a class="mini-link" href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">💻 GitHub</a>
-              <a class="mini-link" href="#" target="_blank" rel="noreferrer">📊 Results</a>
-            </div>
-          </div>
-        </article>
+        <div class="grid" id="pubGrid" style="gap:14px;">
+          <article class="pub-card" data-type="journal" data-year="2025">
+            <div class="pub-type">🟣 Journal Article</div>
+            <h3 class="pub-title">Spiral Coil Shaped Multi-Resonance Metamaterial Absorber for Wireless Communication and Satellite Applications</h3>
+            <p class="pub-venue">AEU - International Journal of Electronics and Communications, Vol. 198, 2025</p>
+            <ul class="list">
+              <li>Resonance peaks at 4.39, 5.68, 7.23, 9.25, 11.53, 13.41, 14.56, 17.31 GHz</li>
+              <li>Absorption efficiency &gt; 92%</li>
+              <li>Angular stability up to 80°</li>
+            </ul>
+            <a class="doi" href="https://doi.org/10.1016/j.aeue.2025.155844" target="_blank" rel="noreferrer">DOI: 10.1016/j.aeue.2025.155844</a>
+          </article>
+
+          <article class="pub-card" data-type="journal" data-year="2024">
+            <div class="pub-type">🟣 Journal Article</div>
+            <h3 class="pub-title">Polarization-Selective Metamaterial Absorber Using Tailored Y-Shaped SRR for UWB Device and Doppler Navigation Aids Applications</h3>
+            <p class="pub-venue">Heliyon, Vol. 10, No. 11, 2024</p>
+            <ul class="list">
+              <li>Y-shaped split ring resonator (SRR) design</li>
+              <li>Applications in UWB devices and Doppler navigation aids</li>
+              <li>Polarization-selective absorption characteristics</li>
+            </ul>
+            <a class="doi" href="https://doi.org/10.1016/j.heliyon.2024.e40102" target="_blank" rel="noreferrer">DOI: 10.1016/j.heliyon.2024.e40102</a>
+          </article>
+
+          <article class="pub-card" data-type="conference" data-year="2023">
+            <div class="pub-type">🟢 Conference Paper</div>
+            <h3 class="pub-title">Eye-Shaped Labyrinth Metamaterial Absorber for C, X, Ku, and K-Band Applications</h3>
+            <p class="pub-venue">IEEE International Conference on Telecommunications and Photonics (ICTP), 2023</p>
+            <ul class="list">
+              <li>Absorption up to 99.9% at 22.856 GHz</li>
+              <li>Additional peaks at 5.76, 7.432, 10.644, 13.813 GHz</li>
+              <li>Multi-band coverage for C, X, Ku, and K-band applications</li>
+            </ul>
+            <a class="doi" href="https://doi.org/10.1109/ICTP60248.2023.10491066" target="_blank" rel="noreferrer">DOI: 10.1109/ICTP60248.2023.10491066</a>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- EXPERIENCE -->
     <section id="experience" class="reveal">
+      <div class="section-kicker">Where I worked</div>
       <h2 class="section-title">Experience</h2>
-      <p class="section-subtitle">Timeline layout that stays readable on phones.</p>
+      <p class="section-subtitle">Clear timeline layout optimized for desktop and mobile reading.</p>
 
       <div class="timeline">
         <div class="t-item">
@@ -828,11 +1094,11 @@
               </div>
               <div class="role-period">Nov 2025 — Present</div>
             </div>
-            <ul class="checklist">
-              <li>Metamaterial absorber-based sensing systems</li>
-              <li>Electromagnetic design optimization</li>
-              <li>Machine learning-assisted analysis support</li>
-              <li>Simulation, data analysis, manuscript preparation</li>
+            <ul class="list">
+              <li>Research on metamaterial absorber-based sensing systems</li>
+              <li>Electromagnetic design optimization for performance enhancement</li>
+              <li>Machine learning-assisted analysis support for research tasks</li>
+              <li>Simulation, data analysis, and manuscript preparation</li>
             </ul>
           </div>
         </div>
@@ -847,11 +1113,11 @@
               </div>
               <div class="role-period">Jul 2024 — Jul 2025</div>
             </div>
-            <ul class="checklist">
+            <ul class="list">
               <li>Test planning, execution, and reporting</li>
-              <li>Defect tracking + cross-team collaboration</li>
-              <li>Functional + exploratory testing</li>
-              <li>Process improvements for reliability</li>
+              <li>Defect tracking and process improvement collaboration</li>
+              <li>Quality assurance through functional and exploratory testing</li>
+              <li>Cross-team communication to improve reliability</li>
             </ul>
           </div>
         </div>
@@ -860,8 +1126,9 @@
 
     <!-- CERTIFICATIONS -->
     <section id="certifications" class="reveal">
+      <div class="section-kicker">Proof & growth</div>
       <h2 class="section-title">Certifications & Achievements</h2>
-      <p class="section-subtitle">Filterable categories with clean card layout.</p>
+      <p class="section-subtitle">Filterable categories with a clean, modern card layout.</p>
 
       <div class="pills" id="certPills">
         <div class="pill active" data-filter="all">All</div>
@@ -910,8 +1177,9 @@
 
     <!-- SKILLS -->
     <section id="skills" class="reveal">
+      <div class="section-kicker">Toolbox</div>
       <h2 class="section-title">Skills</h2>
-      <p class="section-subtitle">Organized into categories with tags. Easy to expand later.</p>
+      <p class="section-subtitle">Organized into strong categories with readable, attractive tags.</p>
 
       <div class="grid grid-2">
         <div class="card">
@@ -944,37 +1212,47 @@
             <span class="tag">Troubleshooting</span><span class="tag">OS Installation</span>
           </div>
         </div>
+
+        <div class="card">
+          <h3>Productivity</h3>
+          <div class="tags">
+            <span class="tag">Word</span><span class="tag">Excel</span><span class="tag">PowerPoint</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Documentation</h3>
+          <div class="tags">
+            <span class="tag">Academic Writing</span><span class="tag">Research Reporting</span><span class="tag">Technical Presentations</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- CONTACT (REAL FORM via Formspree) -->
+    <!-- CONTACT (Formspree) -->
     <section id="contact" class="reveal">
+      <div class="section-kicker">Let’s talk</div>
       <h2 class="section-title">Contact</h2>
-      <p class="section-subtitle">
-        Real form powered by Formspree. Replace <strong>https://formspree.io/f/mbdjnzjl</strong> with your own endpoint.
-      </p>
+      <p class="section-subtitle">This form is connected to Formspree, so messages will be delivered properly.</p>
 
       <div class="contact">
         <div class="card">
-          <h3>Message Me</h3>
-          <p class="muted">
-            This form sends messages to your email via Formspree (no backend needed).
-          </p>
+          <h3>Send a Message</h3>
+          <p class="muted" style="margin-top:6px;">You’ll receive messages through your Formspree inbox.</p>
           <div class="divider"></div>
 
-          <!-- ✅ Replace YOUR_FORM_ID -->
           <form id="contactForm" action="https://formspree.io/f/mbdjnzjl" method="POST">
             <input name="name" type="text" placeholder="Your Name" required />
             <input name="email" type="email" placeholder="Your Email" required />
             <textarea name="message" placeholder="Your Message" required></textarea>
 
-            <!-- Optional: subject line in your email -->
-            <input type="hidden" name="_subject" value="Portfolio Contact — Sayed Mahmud" />
-            <!-- Optional: after submit redirect -->
-            <!-- <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html" /> -->
+            <!-- Optional: subject -->
+            <input type="hidden" name="_subject" value="New message from portfolio website" />
 
             <button class="btn btn-primary" type="submit">Send Message</button>
-            <p class="muted" id="formStatus" style="margin:6px 0 0;"></p>
+            <div class="status ok" id="okMsg">✅ Message sent successfully. Thank you!</div>
+            <div class="status err" id="errMsg">❌ Something went wrong. Please try again.</div>
+            <div class="form-note">Tip: If Formspree requires verification, confirm your email in Formspree settings.</div>
           </form>
         </div>
 
@@ -986,7 +1264,7 @@
             <div class="contact-item">
               <div class="ic">📧</div>
               <div>
-                <div class="muted">Email</div>
+                <div class="small-muted">Email</div>
                 <a href="mailto:sayedmahamudsijann@gmail.com">sayedmahamudsijann@gmail.com</a>
               </div>
             </div>
@@ -994,15 +1272,23 @@
             <div class="contact-item">
               <div class="ic">📱</div>
               <div>
-                <div class="muted">Phone</div>
+                <div class="small-muted">Phone</div>
                 <a href="tel:+8801875806948">+880 1875 806948</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="ic">📍</div>
+              <div>
+                <div class="small-muted">Location</div>
+                <div>Cox's Bazar, Chattogram, Bangladesh</div>
               </div>
             </div>
 
             <div class="contact-item">
               <div class="ic">🔗</div>
               <div>
-                <div class="muted">LinkedIn</div>
+                <div class="small-muted">LinkedIn</div>
                 <a href="https://linkedin.com/in/sayed-mahmud-52619b211" target="_blank" rel="noreferrer">linkedin.com/in/sayed-mahmud</a>
               </div>
             </div>
@@ -1010,7 +1296,7 @@
             <div class="contact-item">
               <div class="ic">💻</div>
               <div>
-                <div class="muted">GitHub</div>
+                <div class="small-muted">GitHub</div>
                 <a href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">github.com/sayedmahamudsijan</a>
               </div>
             </div>
@@ -1018,7 +1304,7 @@
             <div class="contact-item">
               <div class="ic">🎓</div>
               <div>
-                <div class="muted">Google Scholar</div>
+                <div class="small-muted">Google Scholar</div>
                 <a href="https://scholar.google.com/citations?user=ERA4-SrsAAAAJ" target="_blank" rel="noreferrer">View Publications</a>
               </div>
             </div>
@@ -1036,86 +1322,35 @@
     </div>
   </footer>
 
-  <!-- PUBLICATIONS PAGE MODAL -->
-  <div class="modal" id="pubModal" role="dialog" aria-modal="true" aria-label="Publications Page">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-          <h3>Publications Page</h3>
-          <button class="btn btn-ghost" type="button" id="bibBtn">⬇️ Download BibTeX</button>
-        </div>
-        <div style="display:flex; gap:10px; align-items:center;">
-          <button class="icon-btn" id="closePubs" aria-label="Close publications">✕</button>
-        </div>
-      </div>
-
-      <div class="modal-body">
-        <p class="muted" style="margin-top:0;">
-          Filter publications, open DOI links, and export all entries as a BibTeX file.
-        </p>
-
-        <div class="pills" id="pubPills">
-          <div class="pill active" data-filter="all">All</div>
-          <div class="pill" data-filter="journal">Journal</div>
-          <div class="pill" data-filter="conference">Conference</div>
-          <div class="pill" data-filter="2025">2025</div>
-          <div class="pill" data-filter="2024">2024</div>
-          <div class="pill" data-filter="2023">2023</div>
-        </div>
-
-        <div class="grid" id="pubGrid" style="gap:14px;">
-          <article class="pub-card" data-type="journal" data-year="2025">
-            <div class="badge">🟣 Journal Article</div>
-            <h3 class="pub-title">Spiral Coil Shaped Multi-Resonance Metamaterial Absorber for Wireless Communication and Satellite Applications</h3>
-            <p class="pub-venue">AEU - International Journal of Electronics and Communications, Vol. 198, 2025</p>
-            <ul class="highlights">
-              <li>Resonance peaks at 4.39, 5.68, 7.23, 9.25, 11.53, 13.41, 14.56, 17.31 GHz</li>
-              <li>Absorption efficiency &gt; 92%</li>
-              <li>Angular stability up to 80°</li>
-            </ul>
-            <div class="link-row">
-              <a class="mini-link" href="https://doi.org/10.1016/j.aeue.2025.155844" target="_blank" rel="noreferrer">🔗 DOI</a>
-            </div>
-          </article>
-
-          <article class="pub-card" data-type="journal" data-year="2024">
-            <div class="badge">🟣 Journal Article</div>
-            <h3 class="pub-title">Polarization-Selective Metamaterial Absorber Using Tailored Y-Shaped SRR for UWB Device and Doppler Navigation Aids Applications</h3>
-            <p class="pub-venue">Heliyon, Vol. 10, No. 11, 2024</p>
-            <ul class="highlights">
-              <li>Y-shaped split ring resonator (SRR) design</li>
-              <li>Applications in UWB devices and Doppler navigation aids</li>
-              <li>Polarization-selective absorption characteristics</li>
-            </ul>
-            <div class="link-row">
-              <a class="mini-link" href="https://doi.org/10.1016/j.heliyon.2024.e40102" target="_blank" rel="noreferrer">🔗 DOI</a>
-            </div>
-          </article>
-
-          <article class="pub-card" data-type="conference" data-year="2023">
-            <div class="badge">🟢 Conference Paper</div>
-            <h3 class="pub-title">Eye-Shaped Labyrinth Metamaterial Absorber for C, X, Ku, and K-Band Applications</h3>
-            <p class="pub-venue">IEEE International Conference on Telecommunications and Photonics (ICTP), Dhaka, Bangladesh, 2023</p>
-            <ul class="highlights">
-              <li>Absorption up to 99.9% at 22.856 GHz</li>
-              <li>Additional peaks at 5.76, 7.432, 10.644, 13.813 GHz</li>
-              <li>Multi-band coverage for C, X, Ku, and K-band applications</li>
-            </ul>
-            <div class="link-row">
-              <a class="mini-link" href="https://doi.org/10.1109/ICTP60248.2023.10491066" target="_blank" rel="noreferrer">🔗 DOI</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
     /* =========================
-      Mobile menu
+      Theme toggle (dark/light) with persistence
+    ========================== */
+    const root = document.documentElement;
+    const themeToggle = document.getElementById("themeToggle");
+    const themeLabel = document.getElementById("themeLabel");
+
+    function setTheme(theme){
+      root.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+      themeLabel.textContent = theme === "dark" ? "Dark" : "Light";
+    }
+
+    const savedTheme = localStorage.getItem("theme");
+    if(savedTheme === "light" || savedTheme === "dark") setTheme(savedTheme);
+    else setTheme("dark");
+
+    themeToggle?.addEventListener("click", () => {
+      const current = root.getAttribute("data-theme");
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+
+    /* =========================
+      Mobile menu toggle
     ========================== */
     const menuBtn = document.getElementById("menuBtn");
     const mobilePanel = document.getElementById("mobilePanel");
+
     menuBtn?.addEventListener("click", () => {
       const open = mobilePanel.style.display === "block";
       mobilePanel.style.display = open ? "none" : "block";
@@ -1130,69 +1365,10 @@
     });
 
     /* =========================
-      Dark/Light toggle + remember
-    ========================== */
-    const themeToggle = document.getElementById("themeToggle");
-    const root = document.documentElement;
-
-    function setTheme(theme){
-      root.setAttribute("data-theme", theme);
-      localStorage.setItem("theme", theme);
-      themeToggle.textContent = theme === "light" ? "☀️ Theme" : "🌙 Theme";
-    }
-
-    const savedTheme = localStorage.getItem("theme");
-    if(savedTheme){
-      setTheme(savedTheme);
-    } else {
-      // auto-detect from system
-      const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
-      setTheme(prefersLight ? "light" : "dark");
-    }
-
-    themeToggle?.addEventListener("click", () => {
-      const current = root.getAttribute("data-theme") || "dark";
-      setTheme(current === "dark" ? "light" : "dark");
-    });
-
-    /* =========================
-      Publications modal "page"
-    ========================== */
-    const pubModal = document.getElementById("pubModal");
-    const openPubs = document.getElementById("openPubs");
-    const openPubsHero = document.getElementById("openPubsHero");
-    const openPubsInline = document.getElementById("openPubsInline");
-    const openPubsMobile = document.getElementById("openPubsMobile");
-    const closePubs = document.getElementById("closePubs");
-
-    function openPubsModal(){
-      pubModal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    }
-    function closePubsModal(){
-      pubModal.classList.remove("active");
-      document.body.style.overflow = "";
-    }
-
-    openPubs?.addEventListener("click", openPubsModal);
-    openPubsHero?.addEventListener("click", openPubsModal);
-    openPubsInline?.addEventListener("click", openPubsModal);
-    openPubsMobile?.addEventListener("click", (e) => { e.preventDefault(); openPubsModal(); });
-    closePubs?.addEventListener("click", closePubsModal);
-
-    pubModal?.addEventListener("click", (e) => {
-      if(e.target === pubModal) closePubsModal();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape" && pubModal.classList.contains("active")) closePubsModal();
-    });
-
-    /* =========================
-      Publications filtering (inside modal)
+      Publication filter
     ========================== */
     const pubPills = document.getElementById("pubPills");
-    const pubCards = [...document.querySelectorAll("#pubGrid .pub-card")];
+    const pubCards = [...document.querySelectorAll(".pub-card")];
 
     pubPills?.addEventListener("click", (e) => {
       const pill = e.target.closest(".pill");
@@ -1216,58 +1392,11 @@
     });
 
     /* =========================
-      BibTeX download (creates .bib on the fly)
-    ========================== */
-    const bibBtn = document.getElementById("bibBtn");
-
-    const publicationsBib = [
-`@article{Mahmud2025SpiralCoil,
-  title={Spiral Coil Shaped Multi-Resonance Metamaterial Absorber for Wireless Communication and Satellite Applications},
-  author={Mahmud, Sayed},
-  journal={AEU - International Journal of Electronics and Communications},
-  volume={198},
-  year={2025},
-  doi={10.1016/j.aeue.2025.155844}
-}`,
-`@article{Mahmud2024YShapedSRR,
-  title={Polarization-Selective Metamaterial Absorber Using Tailored Y-Shaped SRR for UWB Device and Doppler Navigation Aids Applications},
-  author={Mahmud, Sayed},
-  journal={Heliyon},
-  volume={10},
-  number={11},
-  year={2024},
-  doi={10.1016/j.heliyon.2024.e40102}
-}`,
-`@inproceedings{Mahmud2023EyeShapedLabyrinth,
-  title={Eye-Shaped Labyrinth Metamaterial Absorber for C, X, Ku, and K-Band Applications},
-  author={Mahmud, Sayed},
-  booktitle={IEEE International Conference on Telecommunications and Photonics (ICTP)},
-  year={2023},
-  doi={10.1109/ICTP60248.2023.10491066}
-}`
-    ].join("\n\n");
-
-    function downloadTextFile(filename, text){
-      const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    }
-
-    bibBtn?.addEventListener("click", () => {
-      downloadTextFile("Sayed_Mahmud_Publications.bib", publicationsBib);
-    });
-
-    /* =========================
       Certifications filter
     ========================== */
     const certPills = document.getElementById("certPills");
     const certCards = [...document.querySelectorAll(".cert")];
+
     certPills?.addEventListener("click", (e) => {
       const pill = e.target.closest(".pill");
       if(!pill) return;
@@ -1283,34 +1412,79 @@
     });
 
     /* =========================
-      Real Formspree submit (AJAX) + status message
+      BibTeX download (generated client-side)
+      NOTE: update authors/year/volume/pages if you want more precision.
     ========================== */
-    const contactForm = document.getElementById("contactForm");
-    const formStatus = document.getElementById("formStatus");
+    const bibBtn = document.getElementById("bibBtn");
 
-    contactForm?.addEventListener("submit", async (e) => {
-      // If you prefer default redirect submit, remove this listener.
+    const bibtex = `@article{Mahmud2025SpiralCoil,
+  title={Spiral Coil Shaped Multi-Resonance Metamaterial Absorber for Wireless Communication and Satellite Applications},
+  author={Mahmud, Sayed},
+  journal={AEU - International Journal of Electronics and Communications},
+  volume={198},
+  year={2025},
+  doi={10.1016/j.aeue.2025.155844}
+}
+
+@article{Mahmud2024YShape,
+  title={Polarization-Selective Metamaterial Absorber Using Tailored Y-Shaped SRR for UWB Device and Doppler Navigation Aids Applications},
+  author={Mahmud, Sayed},
+  journal={Heliyon},
+  volume={10},
+  number={11},
+  year={2024},
+  doi={10.1016/j.heliyon.2024.e40102}
+}
+
+@inproceedings{Mahmud2023ICTP,
+  title={Eye-Shaped Labyrinth Metamaterial Absorber for C, X, Ku, and K-Band Applications},
+  author={Mahmud, Sayed},
+  booktitle={IEEE International Conference on Telecommunications and Photonics (ICTP)},
+  year={2023},
+  doi={10.1109/ICTP60248.2023.10491066}
+}
+`;
+
+    bibBtn?.addEventListener("click", () => {
+      const blob = new Blob([bibtex], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Sayed_Mahmud_Publications.bib";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    /* =========================
+      Real Formspree submit UX (AJAX)
+      Keeps user on page + shows success/error message
+    ========================== */
+    const form = document.getElementById("contactForm");
+    const okMsg = document.getElementById("okMsg");
+    const errMsg = document.getElementById("errMsg");
+
+    form?.addEventListener("submit", async (e) => {
       e.preventDefault();
+      okMsg.style.display = "none";
+      errMsg.style.display = "none";
 
-      formStatus.textContent = "Sending...";
-      formStatus.style.opacity = "0.9";
-
+      const data = new FormData(form);
       try{
-        const formData = new FormData(contactForm);
-        const response = await fetch(contactForm.action, {
+        const res = await fetch(form.action, {
           method: "POST",
-          body: formData,
+          body: data,
           headers: { "Accept": "application/json" }
         });
-
-        if(response.ok){
-          formStatus.textContent = "✅ Message sent successfully! I will reply soon.";
-          contactForm.reset();
-        } else {
-          formStatus.textContent = "❌ Failed to send. Please try again or email me directly.";
+        if(res.ok){
+          okMsg.style.display = "block";
+          form.reset();
+        }else{
+          errMsg.style.display = "block";
         }
       }catch(err){
-        formStatus.textContent = "❌ Network error. Please try again or email me directly.";
+        errMsg.style.display = "block";
       }
     });
 
@@ -1325,7 +1499,7 @@
           io.unobserve(en.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.14 });
     revealEls.forEach(el => io.observe(el));
   </script>
 </body>
