@@ -1,1323 +1,1139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sayed Mahmud - Electronic & Telecommunication Engineer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-dark: #0a0e27;
-            --bg-card: #1a1f3a;
-            --accent-research: #8b5cf6;
-            --accent-qa: #10b981;
-            --text-primary: #e5e7eb;
-            --text-secondary: #9ca3af;
-            --border: #374151;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background Pattern */
-        .bg-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            z-index: 0;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, var(--accent-research) 35px, var(--accent-research) 36px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--accent-qa) 35px, var(--accent-qa) 36px);
-            animation: patternMove 60s linear infinite;
-        }
-
-        @keyframes patternMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            background: rgba(10, 14, 39, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-research), var(--accent-qa));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-research);
-        }
-
-        .btn-cv {
-            background: linear-gradient(135deg, var(--accent-research), var(--accent-qa));
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s;
-        }
-
-        .btn-cv:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            padding: 4rem 0;
-        }
-
-        .hero-content {
-            flex: 1;
-        }
-
-        .hero-image {
-            flex: 0 0 300px;
-        }
-
-        .profile-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--accent-research);
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-research), var(--accent-qa));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .contact-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .chip {
-            background: var(--bg-card);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s;
-        }
-
-        .chip:hover {
-            border-color: var(--accent-research);
-            transform: translateY(-2px);
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-research), var(--accent-qa));
-            color: white;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--accent-research);
-            color: var(--accent-research);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-research), var(--accent-qa));
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 3rem;
-        }
-
-        .bio {
-            font-size: 1.1rem;
-            line-height: 2;
-            color: var(--text-secondary);
-        }
-
-        .facts-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .fact-card {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-
-        .fact-label {
-            color: var(--accent-research);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .fact-value {
-            font-size: 1.1rem;
-        }
-
-        .cgpa-badge {
-            background: linear-gradient(135deg, var(--accent-research), var(--accent-qa));
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            display: inline-block;
-            font-weight: 700;
-            margin-top: 0.5rem;
-        }
-
-        /* Spotlight Cards */
-        .spotlight-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .spotlight-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .spotlight-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-research);
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
-        }
-
-        .spotlight-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .spotlight-title {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Publications */
-        .filter-pills {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .pill {
-            background: var(--bg-card);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .pill:hover, .pill.active {
-            background: var(--accent-research);
-            border-color: var(--accent-research);
-        }
-
-        .publications-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .pub-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-        }
-
-        .pub-card:hover {
-            border-color: var(--accent-research);
-            transform: translateX(10px);
-        }
-
-        .pub-type {
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .pub-journal {
-            background: rgba(139, 92, 246, 0.2);
-            color: var(--accent-research);
-        }
-
-        .pub-conference {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--accent-qa);
-        }
-
-        .pub-title {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .pub-venue {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .pub-highlights {
-            list-style: none;
-            margin: 1rem 0;
-        }
-
-        .pub-highlights li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: var(--text-secondary);
-        }
-
-        .pub-highlights li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--accent-research);
-        }
-
-        .doi-btn {
-            display: inline-block;
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--accent-research);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            transition: all 0.3s;
-        }
-
-        .doi-btn:hover {
-            background: var(--accent-research);
-            color: white;
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--accent-research), var(--accent-qa));
-        }
-
-        .timeline-item {
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -3.5rem;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            background: var(--accent-research);
-            border-radius: 50%;
-            border: 3px solid var(--bg-dark);
-        }
-
-        .timeline-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-        }
-
-        .role-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1rem;
-        }
-
-        .role-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .role-badge {
-            padding: 0.3rem 1rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .badge-research {
-            background: rgba(139, 92, 246, 0.2);
-            color: var(--accent-research);
-        }
-
-        .badge-qa {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--accent-qa);
-        }
-
-        .role-company {
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .role-period {
-            color: var(--accent-qa);
-            font-size: 0.9rem;
-        }
-
-        .role-bullets {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .role-bullets li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: var(--text-secondary);
-        }
-
-        .role-bullets li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--accent-qa);
-            font-weight: 700;
-        }
-
-        /* Certifications */
-        .cert-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .tab {
-            padding: 0.8rem 2rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .tab.active {
-            background: var(--accent-research);
-            border-color: var(--accent-research);
-        }
-
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .cert-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .cert-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-research);
-        }
-
-        .cert-content {
-            padding: 1.5rem;
-        }
-
-        .cert-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .cert-org {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-        }
-
-        .skill-category h3 {
-            color: var(--accent-research);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
-        .skill-tag {
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-        }
-
-        /* References */
-        .reference-accordion {
-            background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .accordion-header {
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.3s;
-        }
-
-        .accordion-header:hover {
-            background: rgba(139, 92, 246, 0.1);
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s;
-        }
-
-        .accordion-content.active {
-            max-height: 500px;
-        }
-
-        .reference-info {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .ref-name {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .ref-title {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .ref-contact {
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        /* Contact */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-family: inherit;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .contact-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .contact-card {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-        }
-
-        .contact-info h4 {
-            margin-bottom: 0.3rem;
-            color: var(--accent-research);
-        }
-
-        .contact-info p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-card);
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            margin-top: 4rem;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 16px;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: transparent;
-            border: none;
-            color: var(--text-primary);
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .profile-img {
-                width: 200px;
-                height: 200px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .about-grid,
-            .skills-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .spotlight-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Sayed Mahmud — Electronic & Telecommunication Engineer | Metamaterial Research | QA" />
+  <title>Sayed Mahmud — Portfolio</title>
+
+  <style>
+    /* =========================
+       Design System (Modern)
+    ========================== */
+    :root{
+      --bg: #070a1a;
+      --panel: rgba(255,255,255,.06);
+      --panel-2: rgba(255,255,255,.08);
+      --border: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.65);
+
+      --accent1: #8b5cf6;
+      --accent2: #10b981;
+
+      --shadow: 0 22px 70px rgba(0,0,0,.35);
+      --shadow-soft: 0 12px 40px rgba(0,0,0,.25);
+
+      --radius-lg: 22px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+
+      --max: 1150px;
+      --pad: clamp(16px, 3vw, 28px);
+      --section: clamp(56px, 7vw, 92px);
+
+      --h1: clamp(2.1rem, 4.2vw, 3.4rem);
+      --h2: clamp(1.6rem, 2.8vw, 2.4rem);
+      --h3: clamp(1.1rem, 1.8vw, 1.35rem);
+      --p:  clamp(0.98rem, 1.2vw, 1.05rem);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1000px 600px at 15% 10%, rgba(139,92,246,.18), transparent 55%),
+                  radial-gradient(900px 520px at 85% 25%, rgba(16,185,129,.14), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    img{max-width:100%; display:block}
+    .container{
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Animated background (lighter + better performance) */
+    .bg-grid{
+      position: fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      opacity:.18;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(139,92,246,.22), transparent 40%),
+        radial-gradient(circle at 90% 20%, rgba(16,185,129,.18), transparent 45%),
+        linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: auto, auto, 48px 48px, 48px 48px;
+      filter: blur(.2px);
+    }
+
+    /* =========================
+       Navbar + Mobile menu
+    ========================== */
+    .nav{
+      position: sticky;
+      top:0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(7,10,26,.65);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px var(--pad);
+      max-width: var(--max);
+      margin:0 auto;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      text-decoration:none;
+    }
+    .logo{
+      width:38px; height:38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      letter-spacing:.5px;
+      box-shadow: 0 10px 35px rgba(139,92,246,.25);
+    }
+    .brand strong{
+      font-size: 1.05rem;
+      line-height: 1.1;
+      display:block;
+    }
+    .brand span{
+      font-size:.88rem;
+      color: var(--muted);
+      display:block;
+      margin-top:2px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap: 18px;
+      align-items:center;
+      list-style:none;
+      margin:0; padding:0;
+    }
+    .nav-links a{
+      text-decoration:none;
+      color: var(--muted);
+      font-weight: 600;
+      font-size:.95rem;
+      padding: 10px 10px;
+      border-radius: 12px;
+      transition: .2s ease;
+      outline: none;
+    }
+    .nav-links a:hover{ color: var(--text); background: rgba(255,255,255,.06); }
+    .nav-actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .btn{
+      border:1px solid transparent;
+      background: transparent;
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      transition: .2s ease;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn-primary{
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      box-shadow: 0 18px 40px rgba(139,92,246,.25);
+    }
+    .btn-primary:hover{ transform: translateY(-2px); }
+    .btn-ghost{
+      border-color: rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+    }
+    .btn-ghost:hover{
+      background: rgba(255,255,255,.08);
+      transform: translateY(-1px);
+    }
+    .btn:focus-visible{
+      outline: 3px solid rgba(139,92,246,.35);
+      outline-offset: 2px;
+    }
+
+    .hamburger{
+      display:none;
+      width:44px; height:44px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      cursor:pointer;
+    }
+    .hamburger span{
+      display:block;
+      width:20px; height:2px;
+      background: rgba(255,255,255,.85);
+      margin: 6px auto;
+      border-radius: 2px;
+    }
+    .mobile-panel{
+      display:none;
+      border-top: 1px solid var(--border);
+      background: rgba(7,10,26,.78);
+      backdrop-filter: blur(12px);
+    }
+    .mobile-links{
+      list-style:none;
+      padding: 10px var(--pad) 16px;
+      margin:0;
+      display:grid;
+      gap:8px;
+    }
+    .mobile-links a{
+      display:flex;
+      padding: 12px 12px;
+      border-radius: 12px;
+      text-decoration:none;
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      font-weight: 700;
+    }
+    .mobile-links a:hover{ color: var(--text); }
+
+    /* =========================
+       Hero
+    ========================== */
+    .hero{
+      padding: calc(var(--section) - 10px) 0 var(--section);
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: clamp(18px, 4vw, 48px);
+      align-items:center;
+    }
+    .kicker{
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .82rem;
+      margin-bottom: 10px;
+    }
+    h1{
+      margin:0 0 12px;
+      font-size: var(--h1);
+      line-height: 1.05;
+      letter-spacing:-.02em;
+      background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(255,255,255,.72));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+    }
+    .headline-accent{
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+    }
+
+    .tagline{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size: var(--p);
+      max-width: 60ch;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 18px 0 22px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.78);
+      font-weight: 700;
+      font-size: .92rem;
+      text-decoration:none;
+      transition: .2s ease;
+    }
+    .chip:hover{
+      transform: translateY(-2px);
+      border-color: rgba(139,92,246,.45);
+      color: var(--text);
+    }
+
+    .hero-cta{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .avatar-wrap{
+      display:grid;
+      place-items:center;
+    }
+    .avatar{
+      width: min(340px, 78vw);
+      aspect-ratio: 1/1;
+      border-radius: 28px;
+      overflow:hidden;
+      background: linear-gradient(135deg, rgba(139,92,246,.22), rgba(16,185,129,.18));
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .avatar::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(139,92,246,.35), rgba(16,185,129,.25));
+      opacity:.18;
+      filter: blur(18px);
+      z-index:0;
+    }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =========================
+       Sections + Cards
+    ========================== */
+    section{ padding: var(--section) 0; }
+    .section-title{
+      text-align:center;
+      margin:0 0 16px;
+      font-size: var(--h2);
+      letter-spacing: -.02em;
+    }
+    .section-subtitle{
+      text-align:center;
+      color: var(--muted);
+      margin: 0 auto 34px;
+      max-width: 70ch;
+      font-size: var(--p);
+    }
+
+    .grid{
+      display:grid;
+      gap: 18px;
+    }
+    .grid-2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .card{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      transition: .22s ease;
+    }
+    .card:hover{
+      transform: translateY(-5px);
+      border-color: rgba(139,92,246,.35);
+    }
+
+    .card h3{
+      margin: 6px 0 6px;
+      font-size: var(--h3);
+    }
+    .muted{ color: var(--muted); }
+    .divider{
+      height: 1px;
+      background: rgba(255,255,255,.10);
+      margin: 16px 0;
+    }
+
+    /* Spotlight */
+    .spotlight-icon{
+      width:48px; height:48px;
+      border-radius: 16px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      font-size: 1.35rem;
+    }
+
+    /* Pills & filtering */
+    .pills{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap: 10px;
+      margin: 0 auto 22px;
+    }
+    .pill{
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.78);
+      font-weight: 800;
+      cursor:pointer;
+      transition: .2s ease;
+      user-select:none;
+    }
+    .pill.active{
+      background: linear-gradient(135deg, rgba(139,92,246,.85), rgba(16,185,129,.75));
+      color: white;
+      border-color: transparent;
+    }
+
+    .pub-card{
+      padding: 20px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      transition: .22s ease;
+      position: relative;
+      overflow:hidden;
+    }
+    .pub-card:hover{
+      transform: translateY(-5px);
+      border-color: rgba(139,92,246,.35);
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 900;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.82);
+      margin-bottom: 10px;
+    }
+    .badge.journal{ box-shadow: 0 10px 26px rgba(139,92,246,.14); }
+    .badge.conf{ box-shadow: 0 10px 26px rgba(16,185,129,.12); }
+    .pub-title{
+      margin:0 0 10px;
+      font-size: 1.18rem;
+      line-height: 1.55;
+    }
+    .pub-venue{ color: var(--muted); margin: 0 0 10px; }
+    .highlights{
+      margin: 10px 0 0;
+      padding: 0 0 0 18px;
+      color: var(--muted);
+    }
+    .highlights li{ margin: 6px 0; }
+
+    .doi{
+      display:inline-flex;
+      margin-top: 14px;
+      text-decoration:none;
+      font-weight: 900;
+      color: rgba(255,255,255,.90);
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      transition:.2s ease;
+    }
+    .doi:hover{
+      transform: translateY(-2px);
+      border-color: rgba(139,92,246,.45);
+      background: rgba(255,255,255,.08);
+    }
+
+    /* Timeline */
+    .timeline{
+      position: relative;
+      padding-left: 24px;
+      display:grid;
+      gap: 16px;
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(139,92,246,.9), rgba(16,185,129,.9));
+      border-radius: 2px;
+      opacity:.75;
+    }
+    .t-item{ position: relative; padding-left: 14px; }
+    .t-dot{
+      position:absolute;
+      left: -2px;
+      top: 18px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      border: 2px solid rgba(7,10,26,.9);
+      box-shadow: 0 10px 24px rgba(139,92,246,.25);
+    }
+    .role-head{
+      display:flex;
+      justify-content:space-between;
+      gap: 14px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      margin-bottom: 6px;
+    }
+    .role-title{ margin:0; font-size: 1.18rem; font-weight: 950; }
+    .role-meta{ color: var(--muted); margin: 0; }
+    .role-period{
+      font-weight: 900;
+      color: rgba(255,255,255,.82);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size:.88rem;
+      white-space:nowrap;
+    }
+    .checklist{
+      margin: 10px 0 0;
+      padding: 0 0 0 18px;
+      color: var(--muted);
+    }
+    .checklist li{ margin: 7px 0; }
+
+    /* Skills */
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .tag{
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      font-weight: 800;
+      color: rgba(255,255,255,.78);
+      font-size:.92rem;
+    }
+
+    /* Contact */
+    .contact{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items:start;
+    }
+    form{
+      display:grid;
+      gap: 10px;
+    }
+    input, textarea{
+      width:100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font: inherit;
+      outline:none;
+    }
+    textarea{ min-height: 150px; resize: vertical; }
+    input:focus, textarea:focus{
+      border-color: rgba(139,92,246,.55);
+      box-shadow: 0 0 0 4px rgba(139,92,246,.18);
+    }
+
+    .contact-list{
+      display:grid;
+      gap: 10px;
+    }
+    .contact-item{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+    .contact-item .ic{
+      width:44px; height:44px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      font-size: 1.15rem;
+      flex: 0 0 44px;
+    }
+    .contact-item a{
+      color: rgba(255,255,255,.85);
+      text-decoration:none;
+      font-weight: 900;
+    }
+    .contact-item a:hover{ text-decoration: underline; }
+
+    footer{
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding: 24px 0;
+      color: var(--muted);
+      text-align:center;
+    }
+
+    /* =========================
+       Reveal animation
+    ========================== */
+    .reveal{
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       Responsive
+    ========================== */
+    @media (max-width: 980px){
+      .hero{ grid-template-columns: 1fr; text-align:left; }
+      .avatar-wrap{ justify-items:start; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .contact{ grid-template-columns: 1fr; }
+      .nav-links{ display:none; }
+      .hamburger{ display:inline-block; }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="bg-pattern"></div>
+  <div class="bg-grid"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="nav-brand">SM</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <a href="Sayed_Mahmud_CV.pdf" class="btn-cv" download>Download CV</a>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#home" aria-label="Go to top">
+        <div class="logo">SM</div>
+        <div>
+          <strong>Sayed Mahmud</strong>
+          <span>Electronic & Telecommunication Engineer</span>
         </div>
-    </nav>
+      </a>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero container">
-        <div class="hero-content">
-            <h1>Sayed Mahmud</h1>
-            <p class="tagline">
-                Electronic & Telecommunication Engineering (BSc) | MSc Student at CUET<br>
-                Metamaterial Absorber Research | Research Assistant
-            </p>
-            <div class="contact-chips">
-                <div class="chip">📧 sayedmahamudsijann@gmail.com</div>
-                <div class="chip">📱 +880 1875 806948</div>
-                <div class="chip">📍 Cox's Bazar, Bangladesh</div>
-            </div>
-            <div class="contact-chips">
-                <a href="https://linkedin.com/in/sayed-mahmud-52619b211" class="chip">🔗 LinkedIn</a>
-                <a href="https://github.com/sayedmahamudsijan" class="chip">💻 GitHub</a>
-                <a href="https://scholar.google.com/citations?user=ERA4-SrsAAAAJ" class="chip">🎓 Google Scholar</a>
-            </div>
-            <div class="hero-cta">
-                <a href="#research" class="btn btn-primary">View Publications</a>
-                <a href="#contact" class="btn btn-secondary">Contact Me</a>
-            </div>
-        </div>
-        <div class="hero-image">
-            <img src="profile.jpg" alt="Sayed Mahmud" class="profile-img">
-        </div>
-    </section>
+      <ul class="nav-links" aria-label="Primary navigation">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-    <!-- Spotlight Cards -->
-    <div class="container">
-        <div class="spotlight-grid">
-            <div class="spotlight-card" onclick="location.href='#research'">
-                <div class="spotlight-icon">🔬</div>
-                <h3 class="spotlight-title">Metamaterial Research</h3>
-                <p style="color: var(--text-secondary);">Published papers on polarization-selective absorbers for UWB and satellite applications</p>
-            </div>
-            <div class="spotlight-card" onclick="location.href='#certifications'">
-                <div class="spotlight-icon">✓</div>
-                <h3 class="spotlight-title">QA Engineering</h3>
-                <p style="color: var(--text-secondary);">Certified in functional testing with experience at A1qa Software Testing</p>
-            </div>
-            <div class="spotlight-card" onclick="location.href='#certifications'">
-                <div class="spotlight-icon">🎯</div>
-                <h3 class="spotlight-title">Leadership</h3>
-                <p style="color: var(--text-secondary);">Event Management Secretary at IIUC Telecom Club</p>
-            </div>
-        </div>
+      <div class="nav-actions">
+        <a class="btn btn-primary" href="Sayed_Mahmud_CV.pdf" download>⬇️ Download CV</a>
+        <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
 
-    <!-- About Section -->
-    <section id="about" class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-grid">
-            <div class="bio">
-                <p>I am a research-oriented engineer specializing in metamaterial absorber design and electromagnetic simulation. Currently pursuing my MSc at CUET, I work as a Research Assistant focusing on performance enhancement through machine learning-assisted analysis.</p>
-                <p style="margin-top: 1rem;">My research has been published in high-impact journals including Heliyon and AEU - International Journal of Electronics and Communications. I combine strong theoretical knowledge with practical experience in software quality assurance.</p>
-            </div>
-            <div class="facts-cards">
-                <div class="fact-card">
-                    <div class="fact-label">Citizenship</div>
-                    <div class="fact-value">Bangladeshi</div>
-                </div>
-                <div class="fact-card">
-                    <div class="fact-label">Languages</div>
-                    <div class="fact-value">Bangla (Native), English (Fluent)</div>
-                </div>
-                <div class="fact-card">
-                    <div class="fact-label">Education</div>
-                    <div class="fact-value">
-                        BSc in ETE, IIUC (2020-2024)
-                    </div>
-                </div>
-            </div>
+    <div class="mobile-panel" id="mobilePanel">
+      <ul class="mobile-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home" class="container">
+    <section class="hero">
+      <div class="reveal">
+        <div class="kicker">MSc Student at CUET • Metamaterial Research • QA Engineering</div>
+        <h1>
+          Hi, I’m <span class="headline-accent">Sayed Mahmud</span><br />
+          I build RF solutions & publish metamaterial research.
+        </h1>
+        <p class="tagline">
+          Research-oriented Electronic & Telecommunication Engineer focused on metamaterial absorbers, EM simulation, and
+          performance optimization through analysis + ML assistance. Also experienced in software QA and testing workflows.
+        </p>
+
+        <div class="chips">
+          <span class="chip">📧 sayedmahamudsijann@gmail.com</span>
+          <span class="chip">📱 +880 1875 806948</span>
+          <span class="chip">📍 Cox's Bazar, Bangladesh</span>
         </div>
+
+        <div class="chips">
+          <a class="chip" href="https://linkedin.com/in/sayed-mahmud-52619b211" target="_blank" rel="noreferrer">🔗 LinkedIn</a>
+          <a class="chip" href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">💻 GitHub</a>
+          <a class="chip" href="https://scholar.google.com/citations?user=ERA4-SrsAAAAJ" target="_blank" rel="noreferrer">🎓 Google Scholar</a>
+        </div>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#research">🔬 View Publications</a>
+          <a class="btn btn-ghost" href="#contact">✉️ Contact Me</a>
+        </div>
+      </div>
+
+      <div class="avatar-wrap reveal">
+        <div class="avatar" aria-label="Profile photo">
+          <img src="profile.jpg" alt="Sayed Mahmud"
+               onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27600%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%2310182a%27/><text x=%2750%25%27 y=%2750%25%27 font-size=%2736%27 fill=%27%23ffffff%27 font-family=%27Arial%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27>Profile Photo</text></svg>';"/>
+        </div>
+      </div>
     </section>
 
-    <!-- Research & Publications -->
-    <section id="research" class="container">
-        <h2 class="section-title">Research & Publications</h2>
-        
-        <div class="filter-pills">
-            <div class="pill active" data-filter="all">All</div>
-            <div class="pill" data-filter="journal">Journal</div>
-            <div class="pill" data-filter="conference">Conference</div>
-            <div class="pill" data-filter="2025">2025</div>
-            <div class="pill" data-filter="2024">2024</div>
-            <div class="pill" data-filter="2023">2023</div>
+    <!-- SPOTLIGHT -->
+    <section class="reveal">
+      <div class="grid grid-3">
+        <div class="card" onclick="location.href='#research'" style="cursor:pointer;">
+          <div class="spotlight-icon">🔬</div>
+          <h3>Metamaterial Research</h3>
+          <p class="muted">Published work on polarization-selective and multi-resonance absorbers for UWB & satellite use.</p>
         </div>
 
-        <div class="publications-grid">
-            <!-- Publication 1 -->
-            <div class="pub-card" data-type="journal" data-year="2025">
-                <span class="pub-type pub-journal">Journal Article</span>
-                <h3 class="pub-title">Spiral Coil Shaped Multi-Resonance Metamaterial Absorber for Wireless Communication and Satellite Applications</h3>
-                <p class="pub-venue">AEU - International Journal of Electronics and Communications, Vol. 198, 2025</p>
-                <ul class="pub-highlights">
-                    <li>Resonance peaks at 4.39, 5.68, 7.23, 9.25, 11.53, 13.41, 14.56, 17.31 GHz</li>
-                    <li>Absorption efficiency >92%</li>
-                    <li>Angular stability up to 80°</li>
-                </ul>
-                <a href="https://doi.org/10.1016/j.aeue.2025.155844" class="doi-btn" target="_blank">DOI: 10.1016/j.aeue.2025.155844</a>
-            </div>
-
-            <!-- Publication 2 -->
-            <div class="pub-card" data-type="journal" data-year="2024">
-                <span class="pub-type pub-journal">Journal Article</span>
-                <h3 class="pub-title">Polarization-Selective Metamaterial Absorber Using Tailored Y-Shaped SRR for UWB Device and Doppler Navigation Aids Applications</h3>
-                <p class="pub-venue">Heliyon, Vol. 10, No. 11, 2024</p>
-                <ul class="pub-highlights">
-                    <li>Y-shaped split ring resonator (SRR) design</li>
-                    <li>Applications in UWB devices and Doppler navigation</li>
-                    <li>Polarization-selective absorption characteristics</li>
-                </ul>
-                <a href="https://doi.org/10.1016/j.heliyon.2024.e40102" class="doi-btn" target="_blank">DOI: 10.1016/j.heliyon.2024.e40102</a>
-            </div>
-
-            <!-- Publication 3 -->
-            <div class="pub-card" data-type="conference" data-year="2023">
-                <span class="pub-type pub-conference">Conference Paper</span>
-                <h3 class="pub-title">Eye-Shaped Labyrinth Metamaterial Absorber for C, X, Ku, and K-Band Applications</h3>
-                <p class="pub-venue">IEEE International Conference on Telecommunications and Photonics (ICTP), Dhaka, Bangladesh, 2023</p>
-                <ul class="pub-highlights">
-                    <li>Absorption up to 99.9% at 22.856 GHz</li>
-                    <li>Additional peaks at 5.76, 7.432, 10.644, 13.813 GHz</li>
-                    <li>Multi-band coverage for C, X, Ku, and K-band applications</li>
-                </ul>
-                <a href="https://doi.org/10.1109/ICTP60248.2023.10491066" class="doi-btn" target="_blank">DOI: 10.1109/ICTP60248.2023.10491066</a>
-            </div>
+        <div class="card" onclick="location.href='#experience'" style="cursor:pointer;">
+          <div class="spotlight-icon">✅</div>
+          <h3>QA Engineering</h3>
+          <p class="muted">Functional testing + process collaboration experience with structured defect tracking.</p>
         </div>
+
+        <div class="card" onclick="location.href='#certifications'" style="cursor:pointer;">
+          <div class="spotlight-icon">🎯</div>
+          <h3>Leadership</h3>
+          <p class="muted">Event Management Secretary (IIUC Telecom Club) — teamwork, execution, communication.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="container">
-        <h2 class="section-title">Experience</h2>
-        <div class="timeline">
-            <!-- Experience 1 -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <div class="role-header">
-                        <div>
-                            <h3 class="role-title">Research Assistant</h3>
-                            <p class="role-company">ETE Department, CUET</p>
-                            <p class="role-period">November 2025 – Present</p>
-                        </div>
-                        <span class="role-badge badge-research">Research</span>
-                    </div>
-                    <ul class="role-bullets">
-                        <li>Conducting research on metamaterial absorber-based sensing systems</li>
-                        <li>Focusing on performance enhancement through electromagnetic design optimization</li>
-                        <li>Applying machine learning-assisted analysis to research problems</li>
-                        <li>Involved in simulation, data analysis, and preparation of research publications</li>
-                    </ul>
-                </div>
-            </div>
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <h2 class="section-title">About</h2>
+      <p class="section-subtitle">
+        I combine electromagnetic design skills with research writing and practical QA engineering experience.
+      </p>
 
-            <!-- Experience 2 -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <div class="role-header">
-                        <div>
-                            <h3 class="role-title">Junior QA Engineer</h3>
-                            <p class="role-company">A1qa Software Testing Company</p>
-                            <p class="role-period">July 2024 – July 2025</p>
-                        </div>
-                        <span class="role-badge badge-qa">QA</span>
-                    </div>
-                    <ul class="role-bullets">
-                        <li>Participated in software quality assurance processes including test planning and execution</li>
-                        <li>Conducted defect tracking and worked on enhancing testing methodologies</li>
-                        <li>Ensured product quality through rigorous testing and analysis</li>
-                        <li>Collaborated with development teams to improve software reliability</li>
-                    </ul>
-                </div>
-            </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Bio</h3>
+          <p class="muted">
+            I specialize in metamaterial absorber design, EM simulation, and research reporting. Currently pursuing my MSc at CUET,
+            I work as a Research Assistant focusing on absorber-based sensing systems and performance enhancement through optimization and analysis.
+          </p>
+          <div class="divider"></div>
+          <p class="muted">
+            My research has been published in journals such as Heliyon and AEU. Alongside research, I’ve worked in software quality assurance, supporting reliable delivery through disciplined testing and collaboration.
+          </p>
         </div>
+
+        <div class="card">
+          <h3>Quick Facts</h3>
+          <div class="divider"></div>
+          <p><strong>Citizenship:</strong> <span class="muted">Bangladeshi</span></p>
+          <p><strong>Languages:</strong> <span class="muted">Bangla (Native), English (Fluent)</span></p>
+          <p><strong>Education:</strong> <span class="muted">BSc in ETE, IIUC (2020–2024)</span></p>
+          <div class="divider"></div>
+          <p class="muted">Open to research collaboration, publication writing, and RF / simulation-based engineering roles.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="container">
-        <h2 class="section-title">Certifications & Achievements</h2>
-        
-        <div class="cert-tabs">
-            <div class="tab active" data-tab="all">All</div>
-            <div class="tab" data-tab="qa">QA</div>
-            <div class="tab" data-tab="research">Research</div>
-            <div class="tab" data-tab="leadership">Leadership</div>
-        </div>
+    <!-- RESEARCH -->
+    <section id="research" class="reveal">
+      <h2 class="section-title">Research & Publications</h2>
+      <p class="section-subtitle">Filter by type or year. Add more publications anytime — structure supports scaling.</p>
 
-        <div class="cert-grid">
-            <!-- QA Certificate -->
-            <div class="cert-card" data-category="qa">
-                <div class="cert-content">
-                    <h3 class="cert-title">QA Functional Testing</h3>
-                    <p class="cert-org">A1QA Training Center</p>
-                    <p class="cert-org" style="margin-top: 0.5rem; color: var(--accent-qa);">June 2024</p>
-                </div>
-            </div>
+      <div class="pills" id="pubPills">
+        <div class="pill active" data-filter="all">All</div>
+        <div class="pill" data-filter="journal">Journal</div>
+        <div class="pill" data-filter="conference">Conference</div>
+        <div class="pill" data-filter="2025">2025</div>
+        <div class="pill" data-filter="2024">2024</div>
+        <div class="pill" data-filter="2023">2023</div>
+      </div>
 
-            <!-- BTCL Training -->
-            <div class="cert-card" data-category="research">
-                <div class="cert-content">
-                    <h3 class="cert-title">Industrial Training on Telecommunication, Data and Internet</h3>
-                    <p class="cert-org">BTCL - Chattogram Telecom Region</p>
-                    <p class="cert-org" style="margin-top: 0.5rem; color: var(--accent-research);">October 15-26, 2023</p>
-                </div>
-            </div>
+      <div class="grid" id="pubGrid" style="gap:14px;">
+        <article class="pub-card" data-type="journal" data-year="2025">
+          <div class="badge journal">🟣 Journal Article</div>
+          <h3 class="pub-title">Spiral Coil Shaped Multi-Resonance Metamaterial Absorber for Wireless Communication and Satellite Applications</h3>
+          <p class="pub-venue">AEU - International Journal of Electronics and Communications, Vol. 198, 2025</p>
+          <ul class="highlights">
+            <li>Resonance peaks at 4.39, 5.68, 7.23, 9.25, 11.53, 13.41, 14.56, 17.31 GHz</li>
+            <li>Absorption efficiency &gt; 92%</li>
+            <li>Angular stability up to 80°</li>
+          </ul>
+          <a class="doi" href="https://doi.org/10.1016/j.aeue.2025.155844" target="_blank" rel="noreferrer">DOI: 10.1016/j.aeue.2025.155844</a>
+        </article>
 
-            <!-- ICTP Presentation -->
-            <div class="cert-card" data-category="research">
-                <div class="cert-content">
-                    <h3 class="cert-title">Certificate of Presentation - ICTP 2023</h3>
-                    <p class="cert-org">IEEE International Conference on Telecommunications and Photonics</p>
-                    <p class="cert-org" style="margin-top: 0.5rem; color: var(--accent-research);">December 22, 2023</p>
-                </div>
-            </div>
+        <article class="pub-card" data-type="journal" data-year="2024">
+          <div class="badge journal">🟣 Journal Article</div>
+          <h3 class="pub-title">Polarization-Selective Metamaterial Absorber Using Tailored Y-Shaped SRR for UWB Device and Doppler Navigation Aids Applications</h3>
+          <p class="pub-venue">Heliyon, Vol. 10, No. 11, 2024</p>
+          <ul class="highlights">
+            <li>Y-shaped split ring resonator (SRR) design</li>
+            <li>Applications in UWB devices and Doppler navigation aids</li>
+            <li>Polarization-selective absorption characteristics</li>
+          </ul>
+          <a class="doi" href="https://doi.org/10.1016/j.heliyon.2024.e40102" target="_blank" rel="noreferrer">DOI: 10.1016/j.heliyon.2024.e40102</a>
+        </article>
 
-            <!-- Research Society -->
-            <div class="cert-card" data-category="research">
-                <div class="cert-content">
-                    <h3 class="cert-title">Certificate of Appreciation</h3>
-                    <p class="cert-org">ETE Research Society - Undergraduate Research Assistant</p>
-                    <p class="cert-org" style="margin-top: 0.5rem; color: var(--accent-research);">Ended November 2024</p>
-                </div>
-            </div>
-
-            <!-- Workshop 1 -->
-            <div class="cert-card" data-category="research">
-                <div class="cert-content">
-                    <h3 class="cert-title">A Complete Guide to Write Research Article for Journal</h3>
-                    <p class="cert-org">ETE Research Society Workshop</p>
-                </div>
-            </div>
-
-            <!-- Workshop 2 -->
-            <div class="cert-card" data-category="research">
-                <div class="cert-content">
-                    <h3 class="cert-title">Microwave Metamaterials Design and Applications</h3>
-                    <p class="cert-org">ETE Research Society Workshop</p>
-                </div>
-            </div>
-
-            <!-- Leadership -->
-            <div class="cert-card" data-category="leadership">
-                <div class="cert-content">
-                    <h3 class="cert-title">Event Management Secretary</h3>
-                    <p class="cert-org">IIUC Telecom Club</p>
-                    <p class="cert-org" style="margin-top: 0.5rem; color: var(--accent-qa);">Autumn 2020 - Spring 2021</p>
-                </div>
-            </div>
-        </div>
+        <article class="pub-card" data-type="conference" data-year="2023">
+          <div class="badge conf">🟢 Conference Paper</div>
+          <h3 class="pub-title">Eye-Shaped Labyrinth Metamaterial Absorber for C, X, Ku, and K-Band Applications</h3>
+          <p class="pub-venue">IEEE ICTP, Dhaka, Bangladesh, 2023</p>
+          <ul class="highlights">
+            <li>Absorption up to 99.9% at 22.856 GHz</li>
+            <li>Additional peaks at 5.76, 7.432, 10.644, 13.813 GHz</li>
+            <li>Multi-band coverage for C, X, Ku, and K-band applications</li>
+          </ul>
+          <a class="doi" href="https://doi.org/10.1109/ICTP60248.2023.10491066" target="_blank" rel="noreferrer">DOI: 10.1109/ICTP60248.2023.10491066</a>
+        </article>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="container">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3>Simulation & Modeling</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">CST Studio Suite</span>
-                    <span class="skill-tag">ADS</span>
-                    <span class="skill-tag">Origin Pro</span>
-                    <span class="skill-tag">MATLAB</span>
-                    <span class="skill-tag">LTSpice</span>
-                    <span class="skill-tag">Proteus</span>
-                    <span class="skill-tag">Microwind</span>
-                    <span class="skill-tag">DSCH2</span>
-                </div>
-            </div>
+    <!-- EXPERIENCE -->
+    <section id="experience" class="reveal">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-subtitle">Clear timeline layout that reads well on both desktop and mobile.</p>
 
-            <div class="skill-category">
-                <h3>Programming</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">NoSQL (MongoDB)</span>
-                    <span class="skill-tag">HTML</span>
-                    <span class="skill-tag">JavaScript</span>
-                </div>
+      <div class="timeline">
+        <div class="t-item">
+          <span class="t-dot"></span>
+          <div class="card">
+            <div class="role-head">
+              <div>
+                <p class="role-title">Research Assistant</p>
+                <p class="role-meta">ETE Department, CUET</p>
+              </div>
+              <div class="role-period">Nov 2025 — Present</div>
             </div>
-
-            <div class="skill-category">
-                <h3>Software Testing & QA Tools</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Postman (API Testing)</span>
-                    <span class="skill-tag">Jira</span>
-                    <span class="skill-tag">TestRail</span>
-                    <span class="skill-tag">Virtual Machine Environments</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Electronics & Systems</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Circuit Design</span>
-                    <span class="skill-tag">RF/Microwave Simulation</span>
-                    <span class="skill-tag">System Troubleshooting</span>
-                    <span class="skill-tag">OS Installation & Maintenance</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Productivity Tools</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Microsoft Word</span>
-                    <span class="skill-tag">Excel</span>
-                    <span class="skill-tag">PowerPoint</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Documentation</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Academic Writing</span>
-                    <span class="skill-tag">Research Reporting</span>
-                    <span class="skill-tag">Technical Presentations</span>
-                </div>
-            </div>
+            <ul class="checklist">
+              <li>Research on metamaterial absorber-based sensing systems</li>
+              <li>Electromagnetic design optimization for performance enhancement</li>
+              <li>Machine learning-assisted analysis support for research tasks</li>
+              <li>Simulation, data analysis, and manuscript preparation</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="t-item">
+          <span class="t-dot"></span>
+          <div class="card">
+            <div class="role-head">
+              <div>
+                <p class="role-title">Junior QA Engineer</p>
+                <p class="role-meta">A1qa Software Testing Company</p>
+              </div>
+              <div class="role-period">Jul 2024 — Jul 2025</div>
+            </div>
+            <ul class="checklist">
+              <li>Test planning, execution, and reporting</li>
+              <li>Defect tracking and process improvement collaboration</li>
+              <li>Quality assurance through functional and exploratory testing</li>
+              <li>Cross-team communication to improve reliability</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- References Section -->
-    <section id="references" class="container">
-        <h2 class="section-title">References</h2>
-        <div class="reference-accordion">
-            <div class="accordion-header" onclick="toggleAccordion()">
-                <span>References Available Upon Request</span>
-                <span id="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-content" id="accordion-content">
-                <div class="reference-info">
-                    <h3 class="ref-name">Dr. Mohammed Jashim Uddin</h3>
-                    <p class="ref-title">Associate Professor<br>Department of Electronic and Telecommunication Engineering, IIUC</p>
-                    <div class="ref-contact">
-                        <p>📧 jashim-ete@iiuc.ac.bd</p>
-                        <p>📱 +880 1716 823959</p>
-                    </div>
-                </div>
-            </div>
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="reveal">
+      <h2 class="section-title">Certifications & Achievements</h2>
+      <p class="section-subtitle">Filterable categories with clean card layout.</p>
+
+      <div class="pills" id="certPills">
+        <div class="pill active" data-filter="all">All</div>
+        <div class="pill" data-filter="qa">QA</div>
+        <div class="pill" data-filter="research">Research</div>
+        <div class="pill" data-filter="leadership">Leadership</div>
+      </div>
+
+      <div class="grid grid-3" id="certGrid">
+        <div class="card cert" data-category="qa">
+          <h3>QA Functional Testing</h3>
+          <p class="muted">A1QA Training Center • June 2024</p>
         </div>
+
+        <div class="card cert" data-category="research">
+          <h3>Industrial Training on Telecommunication, Data and Internet</h3>
+          <p class="muted">BTCL — Chattogram Telecom Region • Oct 15–26, 2023</p>
+        </div>
+
+        <div class="card cert" data-category="research">
+          <h3>Certificate of Presentation — ICTP 2023</h3>
+          <p class="muted">IEEE ICTP • Dec 22, 2023</p>
+        </div>
+
+        <div class="card cert" data-category="research">
+          <h3>Certificate of Appreciation</h3>
+          <p class="muted">ETE Research Society — Undergraduate RA • Ended Nov 2024</p>
+        </div>
+
+        <div class="card cert" data-category="research">
+          <h3>Workshop: Research Article Writing</h3>
+          <p class="muted">ETE Research Society</p>
+        </div>
+
+        <div class="card cert" data-category="research">
+          <h3>Workshop: Microwave Metamaterials Design & Applications</h3>
+          <p class="muted">ETE Research Society</p>
+        </div>
+
+        <div class="card cert" data-category="leadership">
+          <h3>Event Management Secretary</h3>
+          <p class="muted">IIUC Telecom Club • Autumn 2020 — Spring 2021</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="container">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-grid">
-            <div class="contact-form">
-                <form onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
+    <!-- SKILLS -->
+    <section id="skills" class="reveal">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-subtitle">Organized into categories with tags. Easy to expand later.</p>
 
-            <div class="contact-cards">
-                <div class="contact-card">
-                    <div class="contact-icon">📧</div>
-                    <div class="contact-info">
-                        <h4>Email</h4>
-                        <p>sayedmahamudsijann@gmail.com</p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">📱</div>
-                    <div class="contact-info">
-                        <h4>Phone</h4>
-                        <p>+880 1875 806948</p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">📍</div>
-                    <div class="contact-info">
-                        <h4>Location</h4>
-                        <p>Cox's Bazar, Chattogram, Bangladesh</p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">🔗</div>
-                    <div class="contact-info">
-                        <h4>LinkedIn</h4>
-                        <p><a href="https://linkedin.com/in/sayed-mahmud-52619b211" style="color: var(--accent-research);">linkedin.com/in/sayed-mahmud</a></p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">💻</div>
-                    <div class="contact-info">
-                        <h4>GitHub</h4>
-                        <p><a href="https://github.com/sayedmahamudsijan" style="color: var(--accent-research);">github.com/sayedmahamudsijan</a></p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">🎓</div>
-                    <div class="contact-info">
-                        <h4>Google Scholar</h4>
-                        <p><a href="https://scholar.google.com/citations?user=ERA4-SrsAAAAJ" style="color: var(--accent-research);">View Publications</a></p>
-                    </div>
-                </div>
-            </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Simulation & Modeling</h3>
+          <div class="tags">
+            <span class="tag">CST Studio Suite</span><span class="tag">ADS</span><span class="tag">OriginPro</span>
+            <span class="tag">MATLAB</span><span class="tag">LTSpice</span><span class="tag">Proteus</span>
+            <span class="tag">Microwind</span><span class="tag">DSCH2</span>
+          </div>
         </div>
+
+        <div class="card">
+          <h3>Programming</h3>
+          <div class="tags">
+            <span class="tag">SQL</span><span class="tag">MongoDB</span><span class="tag">HTML</span><span class="tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Software Testing & QA Tools</h3>
+          <div class="tags">
+            <span class="tag">Postman</span><span class="tag">Jira</span><span class="tag">TestRail</span><span class="tag">VM Environments</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Electronics & Systems</h3>
+          <div class="tags">
+            <span class="tag">Circuit Design</span><span class="tag">RF/Microwave Simulation</span>
+            <span class="tag">Troubleshooting</span><span class="tag">OS Installation</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Productivity</h3>
+          <div class="tags">
+            <span class="tag">Word</span><span class="tag">Excel</span><span class="tag">PowerPoint</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Documentation</h3>
+          <div class="tags">
+            <span class="tag">Academic Writing</span><span class="tag">Research Reporting</span><span class="tag">Technical Presentations</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p style="color: var(--text-secondary);">© 2025 Sayed Mahmud. All rights reserved.</p>
-        <p style="color: var(--text-secondary); margin-top: 0.5rem;">Built with passion for research and innovation</p>
-    </footer>
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-subtitle">Send a message or reach out via the links below.</p>
 
-    <script>
-        // Filter publications
-        document.querySelectorAll('.pill').forEach(pill => {
-            pill.addEventListener('click', () => {
-                document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-                pill.classList.add('active');
-                
-                const filter = pill.dataset.filter;
-                document.querySelectorAll('.pub-card').forEach(card => {
-                    if (filter === 'all') {
-                        card.style.display = 'block';
-                    } else if (filter === 'journal' || filter === 'conference') {
-                        card.style.display = card.dataset.type === filter ? 'block' : 'none';
-                    } else {
-                        card.style.display = card.dataset.year === filter ? 'block' : 'none';
-                    }
-                });
-            });
-        });
+      <div class="contact">
+        <div class="card">
+          <h3>Message Me</h3>
+          <p class="muted">This form is frontend-only. To make it real, connect it to Formspree / Netlify Forms / EmailJS.</p>
+          <div class="divider"></div>
+          <form id="contactForm">
+            <input name="name" type="text" placeholder="Your Name" required />
+            <input name="email" type="email" placeholder="Your Email" required />
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button class="btn btn-primary" type="submit">Send Message</button>
+          </form>
+        </div>
 
-        // Filter certifications
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                const filter = tab.dataset.tab;
-                document.querySelectorAll('.cert-card').forEach(card => {
-                    if (filter === 'all') {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = card.dataset.category === filter ? 'block' : 'none';
-                    }
-                });
-            });
-        });
+        <div class="card">
+          <h3>Details</h3>
+          <div class="divider"></div>
 
-        // Accordion toggle
-        function toggleAccordion() {
-            const content = document.getElementById('accordion-content');
-            const icon = document.getElementById('accordion-icon');
-            content.classList.toggle('active');
-            icon.textContent = content.classList.contains('active') ? '▲' : '▼';
+          <div class="contact-list">
+            <div class="contact-item">
+              <div class="ic">📧</div>
+              <div>
+                <div class="muted">Email</div>
+                <a href="mailto:sayedmahamudsijann@gmail.com">sayedmahamudsijann@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="ic">📱</div>
+              <div>
+                <div class="muted">Phone</div>
+                <a href="tel:+8801875806948">+880 1875 806948</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="ic">📍</div>
+              <div>
+                <div class="muted">Location</div>
+                <div>Cox's Bazar, Chattogram, Bangladesh</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="ic">🔗</div>
+              <div>
+                <div class="muted">LinkedIn</div>
+                <a href="https://linkedin.com/in/sayed-mahmud-52619b211" target="_blank" rel="noreferrer">linkedin.com/in/sayed-mahmud</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="ic">💻</div>
+              <div>
+                <div class="muted">GitHub</div>
+                <a href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">github.com/sayedmahamudsijan</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="ic">🎓</div>
+              <div>
+                <div class="muted">Google Scholar</div>
+                <a href="https://scholar.google.com/citations?user=ERA4-SrsAAAAJ" target="_blank" rel="noreferrer">View Publications</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>© 2025 Sayed Mahmud. All rights reserved.</div>
+      <div style="margin-top:6px;">Built with passion for research and innovation.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById("menuBtn");
+    const mobilePanel = document.getElementById("mobilePanel");
+    menuBtn?.addEventListener("click", () => {
+      const open = mobilePanel.style.display === "block";
+      mobilePanel.style.display = open ? "none" : "block";
+      menuBtn.setAttribute("aria-expanded", String(!open));
+    });
+
+    // Close mobile panel on click
+    document.querySelectorAll(".mobile-links a").forEach(a => {
+      a.addEventListener("click", () => {
+        mobilePanel.style.display = "none";
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Publication filter
+    const pubPills = document.getElementById("pubPills");
+    const pubCards = [...document.querySelectorAll(".pub-card")];
+    pubPills?.addEventListener("click", (e) => {
+      const pill = e.target.closest(".pill");
+      if(!pill) return;
+
+      document.querySelectorAll("#pubPills .pill").forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+
+      const filter = pill.dataset.filter;
+      pubCards.forEach(card => {
+        const type = card.dataset.type;
+        const year = card.dataset.year;
+
+        let show = false;
+        if(filter === "all") show = true;
+        else if(filter === "journal" || filter === "conference") show = type === filter;
+        else show = year === filter;
+
+        card.style.display = show ? "block" : "none";
+      });
+    });
+
+    // Certifications filter
+    const certPills = document.getElementById("certPills");
+    const certCards = [...document.querySelectorAll(".cert")];
+    certPills?.addEventListener("click", (e) => {
+      const pill = e.target.closest(".pill");
+      if(!pill) return;
+
+      document.querySelectorAll("#certPills .pill").forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+
+      const filter = pill.dataset.filter;
+      certCards.forEach(card => {
+        const cat = card.dataset.category;
+        card.style.display = (filter === "all" || cat === filter) ? "block" : "none";
+      });
+    });
+
+    // Contact form (frontend only)
+    document.getElementById("contactForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Thanks! Your message has been recorded (demo). Connect this form to a backend to receive emails.");
+      e.target.reset();
+    });
+
+    // Scroll reveal (simple + performant)
+    const revealEls = [...document.querySelectorAll(".reveal")];
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if(en.isIntersecting){
+          en.target.classList.add("visible");
+          io.unobserve(en.target);
         }
-
-        // Form submit
-        function handleSubmit(e) {
-            e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            e.target.reset();
-        }
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
 </body>
 </html>
