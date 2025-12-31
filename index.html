@@ -7,30 +7,30 @@
   <title>Sayed Mahmud — Portfolio</title>
 
   <style>
-    /* =========================
-       Design System (Modern)
-    ========================== */
+    /* =========================================================
+      THEME TOKENS (Dark default + Light mode via [data-theme])
+    ========================================================== */
     :root{
       --bg: #070a1a;
       --panel: rgba(255,255,255,.06);
-      --panel-2: rgba(255,255,255,.08);
-      --border: rgba(255,255,255,.10);
+      --panel2: rgba(255,255,255,.08);
+      --border: rgba(255,255,255,.12);
       --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.65);
+      --muted: rgba(255,255,255,.66);
 
       --accent1: #8b5cf6;
       --accent2: #10b981;
 
       --shadow: 0 22px 70px rgba(0,0,0,.35);
-      --shadow-soft: 0 12px 40px rgba(0,0,0,.25);
+      --shadow2: 0 12px 40px rgba(0,0,0,.25);
 
       --radius-lg: 22px;
       --radius-md: 14px;
-      --radius-sm: 10px;
+      --radius-sm: 12px;
 
       --max: 1150px;
       --pad: clamp(16px, 3vw, 28px);
-      --section: clamp(56px, 7vw, 92px);
+      --section: clamp(54px, 7vw, 92px);
 
       --h1: clamp(2.1rem, 4.2vw, 3.4rem);
       --h2: clamp(1.6rem, 2.8vw, 2.4rem);
@@ -38,19 +38,31 @@
       --p:  clamp(0.98rem, 1.2vw, 1.05rem);
     }
 
+    html[data-theme="light"]{
+      --bg: #f6f7fb;
+      --panel: rgba(10,15,35,.05);
+      --panel2: rgba(10,15,35,.06);
+      --border: rgba(10,15,35,.12);
+      --text: rgba(10,15,35,.92);
+      --muted: rgba(10,15,35,.64);
+
+      --shadow: 0 18px 55px rgba(10,15,35,.10);
+      --shadow2: 0 10px 30px rgba(10,15,35,.08);
+    }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1000px 600px at 15% 10%, rgba(139,92,246,.18), transparent 55%),
-                  radial-gradient(900px 520px at 85% 25%, rgba(16,185,129,.14), transparent 60%),
-                  var(--bg);
+      background:
+        radial-gradient(1000px 600px at 15% 10%, rgba(139,92,246,.18), transparent 55%),
+        radial-gradient(900px 520px at 85% 25%, rgba(16,185,129,.14), transparent 60%),
+        var(--bg);
       color: var(--text);
       line-height: 1.65;
       overflow-x:hidden;
     }
-
     a{color:inherit}
     img{max-width:100%; display:block}
     .container{
@@ -61,7 +73,7 @@
       z-index: 2;
     }
 
-    /* Animated background (lighter + better performance) */
+    /* Background grid */
     .bg-grid{
       position: fixed;
       inset:0;
@@ -71,21 +83,28 @@
       background:
         radial-gradient(circle at 10% 10%, rgba(139,92,246,.22), transparent 40%),
         radial-gradient(circle at 90% 20%, rgba(16,185,129,.18), transparent 45%),
-        linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
+        linear-gradient(to right, rgba(127,127,127,.18) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(127,127,127,.18) 1px, transparent 1px);
       background-size: auto, auto, 48px 48px, 48px 48px;
       filter: blur(.2px);
     }
+    html[data-theme="light"] .bg-grid{
+      opacity:.12;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(139,92,246,.14), transparent 40%),
+        radial-gradient(circle at 90% 20%, rgba(16,185,129,.12), transparent 45%),
+        linear-gradient(to right, rgba(10,15,35,.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(10,15,35,.08) 1px, transparent 1px);
+      background-size: auto, auto, 48px 48px, 48px 48px;
+    }
 
-    /* =========================
-       Navbar + Mobile menu
-    ========================== */
+    /* Navbar */
     .nav{
       position: sticky;
       top:0;
       z-index: 50;
       backdrop-filter: blur(12px);
-      background: rgba(7,10,26,.65);
+      background: color-mix(in srgb, var(--bg) 60%, transparent);
       border-bottom: 1px solid var(--border);
     }
     .nav-inner{
@@ -95,12 +114,14 @@
       padding: 14px var(--pad);
       max-width: var(--max);
       margin:0 auto;
+      gap: 12px;
     }
     .brand{
       display:flex;
       gap:12px;
       align-items:center;
       text-decoration:none;
+      min-width: 220px;
     }
     .logo{
       width:38px; height:38px;
@@ -108,53 +129,42 @@
       background: linear-gradient(135deg, var(--accent1), var(--accent2));
       display:grid;
       place-items:center;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.5px;
-      box-shadow: 0 10px 35px rgba(139,92,246,.25);
+      box-shadow: 0 10px 35px rgba(139,92,246,.20);
+      color: white;
     }
-    .brand strong{
-      font-size: 1.05rem;
-      line-height: 1.1;
-      display:block;
-    }
-    .brand span{
-      font-size:.88rem;
-      color: var(--muted);
-      display:block;
-      margin-top:2px;
-    }
+    .brand strong{font-size: 1.05rem; line-height: 1.1; display:block;}
+    .brand span{font-size:.88rem; color: var(--muted); display:block; margin-top:2px;}
 
     .nav-links{
       display:flex;
-      gap: 18px;
+      gap: 10px;
       align-items:center;
       list-style:none;
       margin:0; padding:0;
+      flex-wrap: wrap;
+      justify-content:center;
     }
     .nav-links a{
       text-decoration:none;
       color: var(--muted);
-      font-weight: 600;
+      font-weight: 800;
       font-size:.95rem;
       padding: 10px 10px;
       border-radius: 12px;
       transition: .2s ease;
-      outline: none;
     }
-    .nav-links a:hover{ color: var(--text); background: rgba(255,255,255,.06); }
-    .nav-actions{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
+    .nav-links a:hover{ color: var(--text); background: var(--panel); }
 
+    .nav-actions{display:flex; gap:10px; align-items:center; justify-content:flex-end;}
     .btn{
       border:1px solid transparent;
       background: transparent;
       color: var(--text);
       padding: 10px 14px;
       border-radius: 12px;
-      font-weight: 700;
+      font-weight: 900;
       text-decoration:none;
       display:inline-flex;
       align-items:center;
@@ -166,19 +176,17 @@
     }
     .btn-primary{
       background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      box-shadow: 0 18px 40px rgba(139,92,246,.25);
+      color: white;
+      box-shadow: 0 18px 40px rgba(139,92,246,.18);
     }
     .btn-primary:hover{ transform: translateY(-2px); }
     .btn-ghost{
-      border-color: rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
+      border-color: var(--border);
+      background: var(--panel);
     }
-    .btn-ghost:hover{
-      background: rgba(255,255,255,.08);
-      transform: translateY(-1px);
-    }
+    .btn-ghost:hover{ background: var(--panel2); transform: translateY(-1px); }
     .btn:focus-visible{
-      outline: 3px solid rgba(139,92,246,.35);
+      outline: 3px solid color-mix(in srgb, var(--accent1) 45%, transparent);
       outline-offset: 2px;
     }
 
@@ -186,21 +194,22 @@
       display:none;
       width:44px; height:44px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      background: var(--panel);
       cursor:pointer;
     }
     .hamburger span{
       display:block;
       width:20px; height:2px;
-      background: rgba(255,255,255,.85);
+      background: color-mix(in srgb, var(--text) 85%, transparent);
       margin: 6px auto;
       border-radius: 2px;
     }
+
     .mobile-panel{
       display:none;
       border-top: 1px solid var(--border);
-      background: rgba(7,10,26,.78);
+      background: color-mix(in srgb, var(--bg) 70%, transparent);
       backdrop-filter: blur(12px);
     }
     .mobile-links{
@@ -216,25 +225,24 @@
       border-radius: 12px;
       text-decoration:none;
       color: var(--muted);
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.10);
-      font-weight: 700;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      font-weight: 900;
     }
-    .mobile-links a:hover{ color: var(--text); }
+    .mobile-links a:hover{ color: var(--text); background: var(--panel2); }
 
-    /* =========================
-       Hero
-    ========================== */
+    /* Hero */
+    section{ padding: var(--section) 0; }
     .hero{
       padding: calc(var(--section) - 10px) 0 var(--section);
       display:grid;
-      grid-template-columns: 1.3fr .7fr;
+      grid-template-columns: 1.25fr .75fr;
       gap: clamp(18px, 4vw, 48px);
       align-items:center;
     }
     .kicker{
       color: var(--muted);
-      font-weight: 700;
+      font-weight: 900;
       letter-spacing: .08em;
       text-transform: uppercase;
       font-size: .82rem;
@@ -245,10 +253,6 @@
       font-size: var(--h1);
       line-height: 1.05;
       letter-spacing:-.02em;
-      background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(255,255,255,.72));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color: transparent;
     }
     .headline-accent{
       background: linear-gradient(135deg, var(--accent1), var(--accent2));
@@ -256,86 +260,46 @@
       background-clip:text;
       color: transparent;
     }
-
     .tagline{
       margin:0 0 18px;
       color: var(--muted);
       font-size: var(--p);
-      max-width: 60ch;
+      max-width: 62ch;
     }
-
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin: 18px 0 22px;
-    }
+    .chips{display:flex; flex-wrap:wrap; gap:10px; margin: 18px 0 22px;}
     .chip{
       display:inline-flex;
       align-items:center;
       gap:10px;
       padding: 10px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      color: rgba(255,255,255,.78);
-      font-weight: 700;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: color-mix(in srgb, var(--text) 82%, transparent);
+      font-weight: 900;
       font-size: .92rem;
       text-decoration:none;
       transition: .2s ease;
     }
-    .chip:hover{
-      transform: translateY(-2px);
-      border-color: rgba(139,92,246,.45);
-      color: var(--text);
-    }
-
-    .hero-cta{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    .avatar-wrap{
-      display:grid;
-      place-items:center;
-    }
+    .chip:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent1) 45%, var(--border)); }
+    .hero-cta{display:flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;}
+    .avatar-wrap{display:grid; place-items:center;}
     .avatar{
       width: min(340px, 78vw);
       aspect-ratio: 1/1;
       border-radius: 28px;
       overflow:hidden;
-      background: linear-gradient(135deg, rgba(139,92,246,.22), rgba(16,185,129,.18));
-      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(139,92,246,.18), rgba(16,185,129,.12));
+      border: 1px solid var(--border);
       box-shadow: var(--shadow);
       position: relative;
     }
-    .avatar::after{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      border-radius: 30px;
-      background: linear-gradient(135deg, rgba(139,92,246,.35), rgba(16,185,129,.25));
-      opacity:.18;
-      filter: blur(18px);
-      z-index:0;
-    }
-    .avatar img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      position: relative;
-      z-index: 1;
-    }
+    .avatar img{width:100%; height:100%; object-fit: cover;}
 
-    /* =========================
-       Sections + Cards
-    ========================== */
-    section{ padding: var(--section) 0; }
+    /* Titles */
     .section-title{
       text-align:center;
-      margin:0 0 16px;
+      margin:0 0 12px;
       font-size: var(--h2);
       letter-spacing: -.02em;
     }
@@ -343,52 +307,30 @@
       text-align:center;
       color: var(--muted);
       margin: 0 auto 34px;
-      max-width: 70ch;
+      max-width: 72ch;
       font-size: var(--p);
     }
 
-    .grid{
-      display:grid;
-      gap: 18px;
-    }
+    /* Grids & cards */
+    .grid{ display:grid; gap: 18px; }
     .grid-2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid-3{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .card{
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.10);
+      background: var(--panel);
+      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 18px;
-      box-shadow: var(--shadow-soft);
+      box-shadow: var(--shadow2);
       transition: .22s ease;
     }
-    .card:hover{
-      transform: translateY(-5px);
-      border-color: rgba(139,92,246,.35);
-    }
+    .card:hover{ transform: translateY(-5px); border-color: color-mix(in srgb, var(--accent1) 35%, var(--border)); }
 
-    .card h3{
-      margin: 6px 0 6px;
-      font-size: var(--h3);
-    }
+    .card h3{ margin: 6px 0 6px; font-size: var(--h3); }
     .muted{ color: var(--muted); }
-    .divider{
-      height: 1px;
-      background: rgba(255,255,255,.10);
-      margin: 16px 0;
-    }
+    .divider{ height:1px; background: var(--border); margin: 16px 0; }
 
-    /* Spotlight */
-    .spotlight-icon{
-      width:48px; height:48px;
-      border-radius: 16px;
-      display:grid; place-items:center;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      font-size: 1.35rem;
-    }
-
-    /* Pills & filtering */
+    /* Pills */
     .pills{
       display:flex;
       flex-wrap:wrap;
@@ -399,10 +341,10 @@
     .pill{
       padding: 10px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      color: rgba(255,255,255,.78);
-      font-weight: 800;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: color-mix(in srgb, var(--text) 78%, transparent);
+      font-weight: 950;
       cursor:pointer;
       transition: .2s ease;
       user-select:none;
@@ -413,18 +355,19 @@
       border-color: transparent;
     }
 
+    /* Publications cards */
     .pub-card{
       padding: 20px;
       border-radius: var(--radius-lg);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      background: var(--panel);
       transition: .22s ease;
       position: relative;
       overflow:hidden;
     }
     .pub-card:hover{
       transform: translateY(-5px);
-      border-color: rgba(139,92,246,.35);
+      border-color: color-mix(in srgb, var(--accent1) 35%, var(--border));
     }
     .badge{
       display:inline-flex;
@@ -433,58 +376,71 @@
       padding: 8px 12px;
       border-radius: 999px;
       font-size: .85rem;
-      font-weight: 900;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      color: rgba(255,255,255,.82);
+      font-weight: 950;
+      border: 1px solid var(--border);
+      background: var(--panel2);
       margin-bottom: 10px;
     }
-    .badge.journal{ box-shadow: 0 10px 26px rgba(139,92,246,.14); }
-    .badge.conf{ box-shadow: 0 10px 26px rgba(16,185,129,.12); }
-    .pub-title{
-      margin:0 0 10px;
-      font-size: 1.18rem;
-      line-height: 1.55;
-    }
+    .pub-title{ margin:0 0 10px; font-size: 1.18rem; line-height: 1.55; }
     .pub-venue{ color: var(--muted); margin: 0 0 10px; }
-    .highlights{
-      margin: 10px 0 0;
-      padding: 0 0 0 18px;
-      color: var(--muted);
-    }
+    .highlights{ margin: 10px 0 0; padding: 0 0 0 18px; color: var(--muted); }
     .highlights li{ margin: 6px 0; }
 
-    .doi{
+    .link-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px; }
+    .mini-link{
       display:inline-flex;
-      margin-top: 14px;
       text-decoration:none;
-      font-weight: 900;
-      color: rgba(255,255,255,.90);
+      font-weight: 950;
+      color: color-mix(in srgb, var(--text) 90%, transparent);
       padding: 10px 12px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      background: var(--panel2);
       transition:.2s ease;
+      align-items:center;
+      gap:10px;
     }
-    .doi:hover{
-      transform: translateY(-2px);
-      border-color: rgba(139,92,246,.45);
-      background: rgba(255,255,255,.08);
+    .mini-link:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent1) 40%, var(--border)); }
+
+    /* Projects */
+    .project-card{
+      padding: 0;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height: 100%;
+    }
+    .project-media{
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, rgba(139,92,246,.18), rgba(16,185,129,.12));
+      border-bottom: 1px solid var(--border);
+      overflow:hidden;
+    }
+    .project-media img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+    .project-card:hover .project-media img{ transform: scale(1.04); }
+    .project-body{ padding: 16px 18px 18px; }
+    .project-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 12px; }
+    .tag{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--panel2);
+      font-weight: 900;
+      font-size: .86rem;
+      color: color-mix(in srgb, var(--text) 78%, transparent);
     }
 
     /* Timeline */
-    .timeline{
-      position: relative;
-      padding-left: 24px;
-      display:grid;
-      gap: 16px;
-    }
+    .timeline{ position: relative; padding-left: 24px; display:grid; gap: 16px; }
     .timeline::before{
       content:"";
       position:absolute;
-      left: 8px;
-      top: 0;
-      bottom: 0;
+      left: 8px; top: 0; bottom: 0;
       width: 2px;
       background: linear-gradient(180deg, rgba(139,92,246,.9), rgba(16,185,129,.9));
       border-radius: 2px;
@@ -493,58 +449,31 @@
     .t-item{ position: relative; padding-left: 14px; }
     .t-dot{
       position:absolute;
-      left: -2px;
-      top: 18px;
-      width: 12px;
-      height: 12px;
+      left: -2px; top: 18px;
+      width: 12px; height: 12px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      border: 2px solid rgba(7,10,26,.9);
-      box-shadow: 0 10px 24px rgba(139,92,246,.25);
+      border: 2px solid color-mix(in srgb, var(--bg) 92%, transparent);
+      box-shadow: 0 10px 24px rgba(139,92,246,.20);
     }
-    .role-head{
-      display:flex;
-      justify-content:space-between;
-      gap: 14px;
-      flex-wrap:wrap;
-      align-items:flex-start;
-      margin-bottom: 6px;
-    }
+    .role-head{ display:flex; justify-content:space-between; gap: 14px; flex-wrap:wrap; align-items:flex-start; margin-bottom: 6px; }
     .role-title{ margin:0; font-size: 1.18rem; font-weight: 950; }
     .role-meta{ color: var(--muted); margin: 0; }
     .role-period{
-      font-weight: 900;
-      color: rgba(255,255,255,.82);
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
+      font-weight: 950;
+      color: color-mix(in srgb, var(--text) 85%, transparent);
+      border: 1px solid var(--border);
+      background: var(--panel2);
       padding: 8px 10px;
       border-radius: 999px;
       font-size:.88rem;
       white-space:nowrap;
     }
-    .checklist{
-      margin: 10px 0 0;
-      padding: 0 0 0 18px;
-      color: var(--muted);
-    }
+    .checklist{ margin: 10px 0 0; padding: 0 0 0 18px; color: var(--muted); }
     .checklist li{ margin: 7px 0; }
 
     /* Skills */
-    .tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .tag{
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      font-weight: 800;
-      color: rgba(255,255,255,.78);
-      font-size:.92rem;
-    }
+    .tags{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 12px; }
 
     /* Contact */
     .contact{
@@ -553,61 +482,97 @@
       gap: 18px;
       align-items:start;
     }
-    form{
-      display:grid;
-      gap: 10px;
-    }
+    form{ display:grid; gap: 10px; }
     input, textarea{
       width:100%;
       padding: 12px 14px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      background: var(--panel);
       color: var(--text);
       font: inherit;
       outline:none;
     }
     textarea{ min-height: 150px; resize: vertical; }
     input:focus, textarea:focus{
-      border-color: rgba(139,92,246,.55);
-      box-shadow: 0 0 0 4px rgba(139,92,246,.18);
+      border-color: color-mix(in srgb, var(--accent1) 55%, var(--border));
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent1) 22%, transparent);
     }
-
-    .contact-list{
-      display:grid;
-      gap: 10px;
-    }
-    .contact-item{
-      display:flex;
-      gap: 12px;
-      align-items:flex-start;
-    }
+    .contact-list{ display:grid; gap: 10px; }
+    .contact-item{ display:flex; gap: 12px; align-items:flex-start; }
     .contact-item .ic{
       width:44px; height:44px;
       border-radius: 14px;
       display:grid; place-items:center;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      background: var(--panel2);
       font-size: 1.15rem;
       flex: 0 0 44px;
     }
-    .contact-item a{
-      color: rgba(255,255,255,.85);
-      text-decoration:none;
-      font-weight: 900;
-    }
+    .contact-item a{ color: color-mix(in srgb, var(--text) 88%, transparent); text-decoration:none; font-weight: 950; }
     .contact-item a:hover{ text-decoration: underline; }
 
     footer{
-      border-top: 1px solid rgba(255,255,255,.10);
+      border-top: 1px solid var(--border);
       padding: 24px 0;
       color: var(--muted);
       text-align:center;
     }
 
-    /* =========================
-       Reveal animation
-    ========================== */
+    /* Modal ("Publication page") */
+    .modal{
+      position: fixed;
+      inset:0;
+      display:none;
+      place-items:center;
+      padding: 18px;
+      z-index: 2000;
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(8px);
+    }
+    html[data-theme="light"] .modal{ background: rgba(10,15,35,.35); }
+
+    .modal.active{ display:grid; }
+    .modal-content{
+      width: min(980px, 100%);
+      max-height: 90vh;
+      overflow:auto;
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .modal-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(10px);
+      z-index: 2;
+    }
+    .modal-header h3{ margin:0; font-size: 1.1rem; }
+    .modal-body{ padding: 16px; }
+
+    .icon-btn{
+      width:44px; height:44px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      font-size: 1.2rem;
+      transition: .2s ease;
+      color: var(--text);
+    }
+    .icon-btn:hover{ transform: translateY(-1px); background: var(--panel2); }
+
+    /* Reveal animation */
     .reveal{
       opacity: 0;
       transform: translateY(14px);
@@ -618,17 +583,15 @@
       transform: translateY(0);
     }
 
-    /* =========================
-       Responsive
-    ========================== */
+    /* Responsive */
     @media (max-width: 980px){
-      .hero{ grid-template-columns: 1fr; text-align:left; }
-      .avatar-wrap{ justify-items:start; }
+      .hero{ grid-template-columns: 1fr; }
       .grid-3{ grid-template-columns: 1fr; }
       .grid-2{ grid-template-columns: 1fr; }
       .contact{ grid-template-columns: 1fr; }
       .nav-links{ display:none; }
       .hamburger{ display:inline-block; }
+      .brand{ min-width: unset; }
     }
   </style>
 </head>
@@ -650,6 +613,7 @@
       <ul class="nav-links" aria-label="Primary navigation">
         <li><a href="#about">About</a></li>
         <li><a href="#research">Research</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#certifications">Certifications</a></li>
         <li><a href="#skills">Skills</a></li>
@@ -657,6 +621,12 @@
       </ul>
 
       <div class="nav-actions">
+        <button class="btn btn-ghost" id="themeToggle" type="button" aria-label="Toggle dark/light">
+          🌙 Theme
+        </button>
+        <button class="btn btn-ghost" id="openPubs" type="button" aria-label="Open publications page">
+          📚 Publications
+        </button>
         <a class="btn btn-primary" href="Sayed_Mahmud_CV.pdf" download>⬇️ Download CV</a>
         <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -668,10 +638,12 @@
       <ul class="mobile-links">
         <li><a href="#about">About</a></li>
         <li><a href="#research">Research</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#certifications">Certifications</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="#" id="openPubsMobile">📚 Publications Page</a></li>
       </ul>
     </div>
   </header>
@@ -686,8 +658,8 @@
           I build RF solutions & publish metamaterial research.
         </h1>
         <p class="tagline">
-          Research-oriented Electronic & Telecommunication Engineer focused on metamaterial absorbers, EM simulation, and
-          performance optimization through analysis + ML assistance. Also experienced in software QA and testing workflows.
+          Research-oriented Electronic & Telecommunication Engineer focused on metamaterial absorbers, EM simulation,
+          optimization, and ML-assisted analysis. Also experienced in software QA and testing workflows.
         </p>
 
         <div class="chips">
@@ -703,7 +675,8 @@
         </div>
 
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#research">🔬 View Publications</a>
+          <button class="btn btn-primary" type="button" id="openPubsHero">🔬 View Publications</button>
+          <a class="btn btn-ghost" href="#projects">🧩 View Projects</a>
           <a class="btn btn-ghost" href="#contact">✉️ Contact Me</a>
         </div>
       </div>
@@ -712,29 +685,6 @@
         <div class="avatar" aria-label="Profile photo">
           <img src="profile.jpg" alt="Sayed Mahmud"
                onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27600%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%2310182a%27/><text x=%2750%25%27 y=%2750%25%27 font-size=%2736%27 fill=%27%23ffffff%27 font-family=%27Arial%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27>Profile Photo</text></svg>';"/>
-        </div>
-      </div>
-    </section>
-
-    <!-- SPOTLIGHT -->
-    <section class="reveal">
-      <div class="grid grid-3">
-        <div class="card" onclick="location.href='#research'" style="cursor:pointer;">
-          <div class="spotlight-icon">🔬</div>
-          <h3>Metamaterial Research</h3>
-          <p class="muted">Published work on polarization-selective and multi-resonance absorbers for UWB & satellite use.</p>
-        </div>
-
-        <div class="card" onclick="location.href='#experience'" style="cursor:pointer;">
-          <div class="spotlight-icon">✅</div>
-          <h3>QA Engineering</h3>
-          <p class="muted">Functional testing + process collaboration experience with structured defect tracking.</p>
-        </div>
-
-        <div class="card" onclick="location.href='#certifications'" style="cursor:pointer;">
-          <div class="spotlight-icon">🎯</div>
-          <h3>Leadership</h3>
-          <p class="muted">Event Management Secretary (IIUC Telecom Club) — teamwork, execution, communication.</p>
         </div>
       </div>
     </section>
@@ -771,55 +721,93 @@
       </div>
     </section>
 
-    <!-- RESEARCH -->
+    <!-- RESEARCH (teaser; full "page" in modal) -->
     <section id="research" class="reveal">
-      <h2 class="section-title">Research & Publications</h2>
-      <p class="section-subtitle">Filter by type or year. Add more publications anytime — structure supports scaling.</p>
+      <h2 class="section-title">Research (Highlights)</h2>
+      <p class="section-subtitle">Quick highlights below. Open the full Publications Page for BibTeX export + filtering.</p>
 
-      <div class="pills" id="pubPills">
-        <div class="pill active" data-filter="all">All</div>
-        <div class="pill" data-filter="journal">Journal</div>
-        <div class="pill" data-filter="conference">Conference</div>
-        <div class="pill" data-filter="2025">2025</div>
-        <div class="pill" data-filter="2024">2024</div>
-        <div class="pill" data-filter="2023">2023</div>
-      </div>
-
-      <div class="grid" id="pubGrid" style="gap:14px;">
-        <article class="pub-card" data-type="journal" data-year="2025">
-          <div class="badge journal">🟣 Journal Article</div>
+      <div class="grid" style="gap:14px;">
+        <article class="pub-card">
+          <div class="badge">🟣 Journal Article • 2025</div>
           <h3 class="pub-title">Spiral Coil Shaped Multi-Resonance Metamaterial Absorber for Wireless Communication and Satellite Applications</h3>
           <p class="pub-venue">AEU - International Journal of Electronics and Communications, Vol. 198, 2025</p>
-          <ul class="highlights">
-            <li>Resonance peaks at 4.39, 5.68, 7.23, 9.25, 11.53, 13.41, 14.56, 17.31 GHz</li>
-            <li>Absorption efficiency &gt; 92%</li>
-            <li>Angular stability up to 80°</li>
-          </ul>
-          <a class="doi" href="https://doi.org/10.1016/j.aeue.2025.155844" target="_blank" rel="noreferrer">DOI: 10.1016/j.aeue.2025.155844</a>
+          <div class="link-row">
+            <a class="mini-link" href="https://doi.org/10.1016/j.aeue.2025.155844" target="_blank" rel="noreferrer">🔗 DOI</a>
+            <button class="mini-link" type="button" id="openPubsInline">📚 Open Publications Page</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">
+        Add your best 4–8 projects here. Use real screenshots (CST plots, layouts, dashboards) to look more professional.
+      </p>
+
+      <div class="grid grid-3">
+        <!-- Project 1 (EXAMPLE) -->
+        <article class="card project-card">
+          <div class="project-media">
+            <img src="projects/metamaterial-absorber.jpg" alt="Metamaterial absorber project preview"
+                 onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27338%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23070a1a%27/><text x=%2750%25%27 y=%2750%25%27 font-size=%2724%27 fill=%27%23ffffff%27 font-family=%27Arial%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27>Project Image</text></svg>';"/>
+          </div>
+          <div class="project-body">
+            <h3>Metamaterial Absorber Design (CST)</h3>
+            <p class="muted">
+              Multi-resonance absorber workflow: unit-cell design, parametric sweep, polarization & angle stability analysis.
+            </p>
+            <div class="project-tags">
+              <span class="tag">CST</span><span class="tag">RF</span><span class="tag">Absorber</span>
+            </div>
+            <div class="link-row">
+              <a class="mini-link" href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">💻 GitHub</a>
+              <a class="mini-link" href="#" target="_blank" rel="noreferrer">🧾 Report</a>
+            </div>
+          </div>
         </article>
 
-        <article class="pub-card" data-type="journal" data-year="2024">
-          <div class="badge journal">🟣 Journal Article</div>
-          <h3 class="pub-title">Polarization-Selective Metamaterial Absorber Using Tailored Y-Shaped SRR for UWB Device and Doppler Navigation Aids Applications</h3>
-          <p class="pub-venue">Heliyon, Vol. 10, No. 11, 2024</p>
-          <ul class="highlights">
-            <li>Y-shaped split ring resonator (SRR) design</li>
-            <li>Applications in UWB devices and Doppler navigation aids</li>
-            <li>Polarization-selective absorption characteristics</li>
-          </ul>
-          <a class="doi" href="https://doi.org/10.1016/j.heliyon.2024.e40102" target="_blank" rel="noreferrer">DOI: 10.1016/j.heliyon.2024.e40102</a>
+        <!-- Project 2 (EXAMPLE) -->
+        <article class="card project-card">
+          <div class="project-media">
+            <img src="projects/qa-testing.jpg" alt="QA project preview"
+                 onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27338%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23070a1a%27/><text x=%2750%25%27 y=%2750%25%27 font-size=%2724%27 fill=%27%23ffffff%27 font-family=%27Arial%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27>Project Image</text></svg>';"/>
+          </div>
+          <div class="project-body">
+            <h3>API Testing Suite (Postman)</h3>
+            <p class="muted">
+              Postman collections with environments + reusable test scripts for regression and sanity cycles.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Postman</span><span class="tag">QA</span><span class="tag">API</span>
+            </div>
+            <div class="link-row">
+              <a class="mini-link" href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">💻 GitHub</a>
+              <a class="mini-link" href="#" target="_blank" rel="noreferrer">📄 Docs</a>
+            </div>
+          </div>
         </article>
 
-        <article class="pub-card" data-type="conference" data-year="2023">
-          <div class="badge conf">🟢 Conference Paper</div>
-          <h3 class="pub-title">Eye-Shaped Labyrinth Metamaterial Absorber for C, X, Ku, and K-Band Applications</h3>
-          <p class="pub-venue">IEEE ICTP, Dhaka, Bangladesh, 2023</p>
-          <ul class="highlights">
-            <li>Absorption up to 99.9% at 22.856 GHz</li>
-            <li>Additional peaks at 5.76, 7.432, 10.644, 13.813 GHz</li>
-            <li>Multi-band coverage for C, X, Ku, and K-band applications</li>
-          </ul>
-          <a class="doi" href="https://doi.org/10.1109/ICTP60248.2023.10491066" target="_blank" rel="noreferrer">DOI: 10.1109/ICTP60248.2023.10491066</a>
+        <!-- Project 3 (EXAMPLE) -->
+        <article class="card project-card">
+          <div class="project-media">
+            <img src="projects/ml-analysis.jpg" alt="ML-assisted analysis preview"
+                 onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27338%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23070a1a%27/><text x=%2750%25%27 y=%2750%25%27 font-size=%2724%27 fill=%27%23ffffff%27 font-family=%27Arial%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27>Project Image</text></svg>';"/>
+          </div>
+          <div class="project-body">
+            <h3>ML-Assisted Simulation Insights</h3>
+            <p class="muted">
+              Data pipeline for simulation results → feature extraction → model exploration for performance patterns.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">Analysis</span><span class="tag">ML</span>
+            </div>
+            <div class="link-row">
+              <a class="mini-link" href="https://github.com/sayedmahamudsijan" target="_blank" rel="noreferrer">💻 GitHub</a>
+              <a class="mini-link" href="#" target="_blank" rel="noreferrer">📊 Results</a>
+            </div>
+          </div>
         </article>
       </div>
     </section>
@@ -827,7 +815,7 @@
     <!-- EXPERIENCE -->
     <section id="experience" class="reveal">
       <h2 class="section-title">Experience</h2>
-      <p class="section-subtitle">Clear timeline layout that reads well on both desktop and mobile.</p>
+      <p class="section-subtitle">Timeline layout that stays readable on phones.</p>
 
       <div class="timeline">
         <div class="t-item">
@@ -841,10 +829,10 @@
               <div class="role-period">Nov 2025 — Present</div>
             </div>
             <ul class="checklist">
-              <li>Research on metamaterial absorber-based sensing systems</li>
-              <li>Electromagnetic design optimization for performance enhancement</li>
-              <li>Machine learning-assisted analysis support for research tasks</li>
-              <li>Simulation, data analysis, and manuscript preparation</li>
+              <li>Metamaterial absorber-based sensing systems</li>
+              <li>Electromagnetic design optimization</li>
+              <li>Machine learning-assisted analysis support</li>
+              <li>Simulation, data analysis, manuscript preparation</li>
             </ul>
           </div>
         </div>
@@ -861,9 +849,9 @@
             </div>
             <ul class="checklist">
               <li>Test planning, execution, and reporting</li>
-              <li>Defect tracking and process improvement collaboration</li>
-              <li>Quality assurance through functional and exploratory testing</li>
-              <li>Cross-team communication to improve reliability</li>
+              <li>Defect tracking + cross-team collaboration</li>
+              <li>Functional + exploratory testing</li>
+              <li>Process improvements for reliability</li>
             </ul>
           </div>
         </div>
@@ -956,38 +944,37 @@
             <span class="tag">Troubleshooting</span><span class="tag">OS Installation</span>
           </div>
         </div>
-
-        <div class="card">
-          <h3>Productivity</h3>
-          <div class="tags">
-            <span class="tag">Word</span><span class="tag">Excel</span><span class="tag">PowerPoint</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Documentation</h3>
-          <div class="tags">
-            <span class="tag">Academic Writing</span><span class="tag">Research Reporting</span><span class="tag">Technical Presentations</span>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- CONTACT (REAL FORM via Formspree) -->
     <section id="contact" class="reveal">
       <h2 class="section-title">Contact</h2>
-      <p class="section-subtitle">Send a message or reach out via the links below.</p>
+      <p class="section-subtitle">
+        Real form powered by Formspree. Replace <strong>https://formspree.io/f/mbdjnzjl</strong> with your own endpoint.
+      </p>
 
       <div class="contact">
         <div class="card">
           <h3>Message Me</h3>
-          <p class="muted">This form is frontend-only. To make it real, connect it to Formspree / Netlify Forms / EmailJS.</p>
+          <p class="muted">
+            This form sends messages to your email via Formspree (no backend needed).
+          </p>
           <div class="divider"></div>
-          <form id="contactForm">
+
+          <!-- ✅ Replace YOUR_FORM_ID -->
+          <form id="contactForm" action="https://formspree.io/f/mbdjnzjl" method="POST">
             <input name="name" type="text" placeholder="Your Name" required />
             <input name="email" type="email" placeholder="Your Email" required />
             <textarea name="message" placeholder="Your Message" required></textarea>
+
+            <!-- Optional: subject line in your email -->
+            <input type="hidden" name="_subject" value="Portfolio Contact — Sayed Mahmud" />
+            <!-- Optional: after submit redirect -->
+            <!-- <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html" /> -->
+
             <button class="btn btn-primary" type="submit">Send Message</button>
+            <p class="muted" id="formStatus" style="margin:6px 0 0;"></p>
           </form>
         </div>
 
@@ -1009,14 +996,6 @@
               <div>
                 <div class="muted">Phone</div>
                 <a href="tel:+8801875806948">+880 1875 806948</a>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="ic">📍</div>
-              <div>
-                <div class="muted">Location</div>
-                <div>Cox's Bazar, Chattogram, Bangladesh</div>
               </div>
             </div>
 
@@ -1057,8 +1036,84 @@
     </div>
   </footer>
 
+  <!-- PUBLICATIONS PAGE MODAL -->
+  <div class="modal" id="pubModal" role="dialog" aria-modal="true" aria-label="Publications Page">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <h3>Publications Page</h3>
+          <button class="btn btn-ghost" type="button" id="bibBtn">⬇️ Download BibTeX</button>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="icon-btn" id="closePubs" aria-label="Close publications">✕</button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <p class="muted" style="margin-top:0;">
+          Filter publications, open DOI links, and export all entries as a BibTeX file.
+        </p>
+
+        <div class="pills" id="pubPills">
+          <div class="pill active" data-filter="all">All</div>
+          <div class="pill" data-filter="journal">Journal</div>
+          <div class="pill" data-filter="conference">Conference</div>
+          <div class="pill" data-filter="2025">2025</div>
+          <div class="pill" data-filter="2024">2024</div>
+          <div class="pill" data-filter="2023">2023</div>
+        </div>
+
+        <div class="grid" id="pubGrid" style="gap:14px;">
+          <article class="pub-card" data-type="journal" data-year="2025">
+            <div class="badge">🟣 Journal Article</div>
+            <h3 class="pub-title">Spiral Coil Shaped Multi-Resonance Metamaterial Absorber for Wireless Communication and Satellite Applications</h3>
+            <p class="pub-venue">AEU - International Journal of Electronics and Communications, Vol. 198, 2025</p>
+            <ul class="highlights">
+              <li>Resonance peaks at 4.39, 5.68, 7.23, 9.25, 11.53, 13.41, 14.56, 17.31 GHz</li>
+              <li>Absorption efficiency &gt; 92%</li>
+              <li>Angular stability up to 80°</li>
+            </ul>
+            <div class="link-row">
+              <a class="mini-link" href="https://doi.org/10.1016/j.aeue.2025.155844" target="_blank" rel="noreferrer">🔗 DOI</a>
+            </div>
+          </article>
+
+          <article class="pub-card" data-type="journal" data-year="2024">
+            <div class="badge">🟣 Journal Article</div>
+            <h3 class="pub-title">Polarization-Selective Metamaterial Absorber Using Tailored Y-Shaped SRR for UWB Device and Doppler Navigation Aids Applications</h3>
+            <p class="pub-venue">Heliyon, Vol. 10, No. 11, 2024</p>
+            <ul class="highlights">
+              <li>Y-shaped split ring resonator (SRR) design</li>
+              <li>Applications in UWB devices and Doppler navigation aids</li>
+              <li>Polarization-selective absorption characteristics</li>
+            </ul>
+            <div class="link-row">
+              <a class="mini-link" href="https://doi.org/10.1016/j.heliyon.2024.e40102" target="_blank" rel="noreferrer">🔗 DOI</a>
+            </div>
+          </article>
+
+          <article class="pub-card" data-type="conference" data-year="2023">
+            <div class="badge">🟢 Conference Paper</div>
+            <h3 class="pub-title">Eye-Shaped Labyrinth Metamaterial Absorber for C, X, Ku, and K-Band Applications</h3>
+            <p class="pub-venue">IEEE International Conference on Telecommunications and Photonics (ICTP), Dhaka, Bangladesh, 2023</p>
+            <ul class="highlights">
+              <li>Absorption up to 99.9% at 22.856 GHz</li>
+              <li>Additional peaks at 5.76, 7.432, 10.644, 13.813 GHz</li>
+              <li>Multi-band coverage for C, X, Ku, and K-band applications</li>
+            </ul>
+            <div class="link-row">
+              <a class="mini-link" href="https://doi.org/10.1109/ICTP60248.2023.10491066" target="_blank" rel="noreferrer">🔗 DOI</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Mobile menu toggle
+    /* =========================
+      Mobile menu
+    ========================== */
     const menuBtn = document.getElementById("menuBtn");
     const mobilePanel = document.getElementById("mobilePanel");
     menuBtn?.addEventListener("click", () => {
@@ -1067,7 +1122,6 @@
       menuBtn.setAttribute("aria-expanded", String(!open));
     });
 
-    // Close mobile panel on click
     document.querySelectorAll(".mobile-links a").forEach(a => {
       a.addEventListener("click", () => {
         mobilePanel.style.display = "none";
@@ -1075,9 +1129,71 @@
       });
     });
 
-    // Publication filter
+    /* =========================
+      Dark/Light toggle + remember
+    ========================== */
+    const themeToggle = document.getElementById("themeToggle");
+    const root = document.documentElement;
+
+    function setTheme(theme){
+      root.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+      themeToggle.textContent = theme === "light" ? "☀️ Theme" : "🌙 Theme";
+    }
+
+    const savedTheme = localStorage.getItem("theme");
+    if(savedTheme){
+      setTheme(savedTheme);
+    } else {
+      // auto-detect from system
+      const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+      setTheme(prefersLight ? "light" : "dark");
+    }
+
+    themeToggle?.addEventListener("click", () => {
+      const current = root.getAttribute("data-theme") || "dark";
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+
+    /* =========================
+      Publications modal "page"
+    ========================== */
+    const pubModal = document.getElementById("pubModal");
+    const openPubs = document.getElementById("openPubs");
+    const openPubsHero = document.getElementById("openPubsHero");
+    const openPubsInline = document.getElementById("openPubsInline");
+    const openPubsMobile = document.getElementById("openPubsMobile");
+    const closePubs = document.getElementById("closePubs");
+
+    function openPubsModal(){
+      pubModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+    function closePubsModal(){
+      pubModal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    openPubs?.addEventListener("click", openPubsModal);
+    openPubsHero?.addEventListener("click", openPubsModal);
+    openPubsInline?.addEventListener("click", openPubsModal);
+    openPubsMobile?.addEventListener("click", (e) => { e.preventDefault(); openPubsModal(); });
+    closePubs?.addEventListener("click", closePubsModal);
+
+    pubModal?.addEventListener("click", (e) => {
+      if(e.target === pubModal) closePubsModal();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && pubModal.classList.contains("active")) closePubsModal();
+    });
+
+    /* =========================
+      Publications filtering (inside modal)
+    ========================== */
     const pubPills = document.getElementById("pubPills");
-    const pubCards = [...document.querySelectorAll(".pub-card")];
+    const pubCards = [...document.querySelectorAll("#pubGrid .pub-card")];
+
     pubPills?.addEventListener("click", (e) => {
       const pill = e.target.closest(".pill");
       if(!pill) return;
@@ -1099,7 +1215,57 @@
       });
     });
 
-    // Certifications filter
+    /* =========================
+      BibTeX download (creates .bib on the fly)
+    ========================== */
+    const bibBtn = document.getElementById("bibBtn");
+
+    const publicationsBib = [
+`@article{Mahmud2025SpiralCoil,
+  title={Spiral Coil Shaped Multi-Resonance Metamaterial Absorber for Wireless Communication and Satellite Applications},
+  author={Mahmud, Sayed},
+  journal={AEU - International Journal of Electronics and Communications},
+  volume={198},
+  year={2025},
+  doi={10.1016/j.aeue.2025.155844}
+}`,
+`@article{Mahmud2024YShapedSRR,
+  title={Polarization-Selective Metamaterial Absorber Using Tailored Y-Shaped SRR for UWB Device and Doppler Navigation Aids Applications},
+  author={Mahmud, Sayed},
+  journal={Heliyon},
+  volume={10},
+  number={11},
+  year={2024},
+  doi={10.1016/j.heliyon.2024.e40102}
+}`,
+`@inproceedings{Mahmud2023EyeShapedLabyrinth,
+  title={Eye-Shaped Labyrinth Metamaterial Absorber for C, X, Ku, and K-Band Applications},
+  author={Mahmud, Sayed},
+  booktitle={IEEE International Conference on Telecommunications and Photonics (ICTP)},
+  year={2023},
+  doi={10.1109/ICTP60248.2023.10491066}
+}`
+    ].join("\n\n");
+
+    function downloadTextFile(filename, text){
+      const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    bibBtn?.addEventListener("click", () => {
+      downloadTextFile("Sayed_Mahmud_Publications.bib", publicationsBib);
+    });
+
+    /* =========================
+      Certifications filter
+    ========================== */
     const certPills = document.getElementById("certPills");
     const certCards = [...document.querySelectorAll(".cert")];
     certPills?.addEventListener("click", (e) => {
@@ -1116,14 +1282,41 @@
       });
     });
 
-    // Contact form (frontend only)
-    document.getElementById("contactForm")?.addEventListener("submit", (e) => {
+    /* =========================
+      Real Formspree submit (AJAX) + status message
+    ========================== */
+    const contactForm = document.getElementById("contactForm");
+    const formStatus = document.getElementById("formStatus");
+
+    contactForm?.addEventListener("submit", async (e) => {
+      // If you prefer default redirect submit, remove this listener.
       e.preventDefault();
-      alert("Thanks! Your message has been recorded (demo). Connect this form to a backend to receive emails.");
-      e.target.reset();
+
+      formStatus.textContent = "Sending...";
+      formStatus.style.opacity = "0.9";
+
+      try{
+        const formData = new FormData(contactForm);
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
+        });
+
+        if(response.ok){
+          formStatus.textContent = "✅ Message sent successfully! I will reply soon.";
+          contactForm.reset();
+        } else {
+          formStatus.textContent = "❌ Failed to send. Please try again or email me directly.";
+        }
+      }catch(err){
+        formStatus.textContent = "❌ Network error. Please try again or email me directly.";
+      }
     });
 
-    // Scroll reveal (simple + performant)
+    /* =========================
+      Scroll reveal
+    ========================== */
     const revealEls = [...document.querySelectorAll(".reveal")];
     const io = new IntersectionObserver((entries) => {
       entries.forEach(en => {
